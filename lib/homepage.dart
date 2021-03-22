@@ -11,18 +11,40 @@ class _HomepageState extends State<Homepage> {
     return Scaffold(
       backgroundColor: Color(0XFF1E1D21),
       appBar: AppBar(
-        backgroundColor: Colors.black87,
+        backgroundColor: Color(0XFFB577FF),
         centerTitle: true,
         title: Text('Patch Works'),
         brightness: Brightness.dark,
       ),
       body: Center(
         child: SingleChildScrollView(
-          child: Text(
-            'This is our app',
-            style: TextStyle(
-              fontSize: 35.0,
-            ),
+          child: Column(
+            children: [
+              Image(
+                image: AssetImage('images/logo.png'),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: RoundedButton(
+                      title: 'Register New Complaint',
+                      colour: Color(0XFFB577FF),
+                      onPressed: () {},
+                    ),
+                  ),
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: RoundedButton(
+                      title: 'View Registered Complaint',
+                      colour: Color(0XFFB577FF),
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -46,15 +68,15 @@ class RoundedButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
           onPressed: onPressed,
-          minWidth: 150.0,
+          minWidth: 130.0,
           height: 42.0,
           child: Text(
             title,
             style: TextStyle(
-              letterSpacing: 4.0,
-              color: Colors.black,
-              fontSize: 33.0,
-              fontWeight: FontWeight.bold,
+              letterSpacing: 1.6,
+              color: Colors.white,
+              fontSize: 25.0,
+              fontWeight: FontWeight.w400,
               // fontFamily: 'Nunito',
             ),
           ),
