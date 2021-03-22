@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'new_complaint.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -14,7 +15,6 @@ class _HomepageState extends State<Homepage> {
         backgroundColor: Color(0XFFB577FF),
         centerTitle: true,
         title: Text('Patch Works'),
-        brightness: Brightness.dark,
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -31,7 +31,16 @@ class _HomepageState extends State<Homepage> {
                     child: RoundedButton(
                       title: 'Register New Complaint',
                       colour: Color(0XFFB577FF),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return New_Complaint();
+                            },
+                          ),
+                        );
+                      },
                     ),
                   ),
                   FittedBox(
