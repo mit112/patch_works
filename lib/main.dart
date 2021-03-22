@@ -8,6 +8,14 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Homepage();
+    return MaterialApp(
+      title: 'Patch Works',
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          brightness: Brightness.dark,
+        ),
+      ),
+      home: Homepage(),
+    );
   }
 }
