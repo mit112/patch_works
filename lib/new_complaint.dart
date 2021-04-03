@@ -28,17 +28,17 @@ class _New_ComplaintState extends State<New_Complaint> {
                 children: [
                   Text(
                     'Name:- ',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                    ),
+                    style: kFieldStyle,
                   ),
                   SizedBox(
                     width: 5.0,
                   ),
                   Expanded(
                     child: TextField(
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'PoiretOne',
+                      ),
                       // obscureText: true,
                       autofocus: false,
                       textAlign: TextAlign.center,
@@ -48,6 +48,8 @@ class _New_ComplaintState extends State<New_Complaint> {
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Your Name',
                         hintStyle: TextStyle(
+                          fontFamily: 'PoiretOne',
+
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           // fontFamily: kFont,
@@ -67,17 +69,17 @@ class _New_ComplaintState extends State<New_Complaint> {
                 children: [
                   Text(
                     'Phone No:- ',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                    ),
+                    style: kFieldStyle,
                   ),
                   SizedBox(
                     width: 5.0,
                   ),
                   Expanded(
                     child: TextField(
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'PoiretOne',
+                      ),
                       // obscureText: true,
                       autofocus: false,
                       textAlign: TextAlign.center,
@@ -87,6 +89,8 @@ class _New_ComplaintState extends State<New_Complaint> {
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Your Phone No.',
                         hintStyle: TextStyle(
+                          fontFamily: 'PoiretOne',
+
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           // fontFamily: kFont,
@@ -108,17 +112,17 @@ class _New_ComplaintState extends State<New_Complaint> {
                 children: [
                   Text(
                     'Landmarks:- ',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                    ),
+                    style: kFieldStyle,
                   ),
                   SizedBox(
                     width: 5.0,
                   ),
                   Expanded(
                     child: TextField(
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'PoiretOne',
+                      ),
                       // obscureText: true,
                       autofocus: false,
                       textAlign: TextAlign.center,
@@ -128,6 +132,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Nearby Landmarks',
                         hintStyle: TextStyle(
+                          fontFamily: 'PoiretOne',
                           color: Colors.white,
                           fontWeight: FontWeight.w600,
                           // fontFamily: kFont,
@@ -137,6 +142,49 @@ class _New_ComplaintState extends State<New_Complaint> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 15.0,
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Text(
+                  'Comments:- ',
+                  style: kFieldStyle,
+                ),
+                SizedBox(
+                  width: 5.0,
+                ),
+                Expanded(
+                  child: TextField(
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'PoiretOne',
+                    ),
+                    // obscureText: true,
+                    autofocus: false,
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      //Do something with the user input.
+                    },
+
+                    decoration: kTextFieldDecoration.copyWith(
+                      hintText: 'Enter Other Comments',
+                      hintStyle: TextStyle(
+                        fontFamily: 'PoiretOne',
+
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        // fontFamily: kFont,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
         ),

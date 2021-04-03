@@ -23,9 +23,9 @@ class RoundedButton extends StatelessWidget {
             style: TextStyle(
               letterSpacing: 1.6,
               color: Colors.white,
-              fontSize: 25.0,
-              fontWeight: FontWeight.w400,
-              // fontFamily: 'Nunito',
+              fontSize: 28.0,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'PoiretOne',
             ),
           ),
         ),
@@ -54,4 +54,11 @@ const kTextFieldDecoration = InputDecoration(
     ),
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
+);
+
+const kFieldStyle = TextStyle(
+  fontFamily: 'PoiretOne',
+  color: Colors.white,
+  fontWeight: FontWeight.w600,
+  fontSize: 25.0,
 );
