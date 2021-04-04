@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "389795803973",
+    "project_id": "patch-works",
+    "storage_bucket": "patch-works.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389795803973:android:b30618e2706e5474ec042c",
+        "android_client_info": {
+          "package_name": "com.example.patch_works"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389795803973-huqs0pcjbn3s9p272kfbipd56atns16e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8BY6Wn0aHPhrit2McDdcLDH-6Nr2fkCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389795803973-huqs0pcjbn3s9p272kfbipd56atns16e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

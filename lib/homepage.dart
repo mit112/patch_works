@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'new_complaint.dart';
 import 'constants.dart';
+import 'package:patch_works/services/auth.dart';
+import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -50,6 +52,16 @@ class _HomepageState extends State<Homepage> {
                       title: 'View Registered Complaint',
                       colour: Color(0XFFB577FF),
                       onPressed: () {},
+                    ),
+                  ),
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: RoundedButton(
+                      title: 'Log Out',
+                      colour: Color(0XFFB577FF),
+                      onPressed: () {
+                        context.read<AuthService>().signOut();
+                      },
                     ),
                   ),
                 ],
