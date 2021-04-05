@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'constants.dart';
 
 class New_Complaint extends StatefulWidget {
@@ -7,6 +8,13 @@ class New_Complaint extends StatefulWidget {
 }
 
 class _New_ComplaintState extends State<New_Complaint> {
+  final TextEditingController _textEditingController = TextEditingController();
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('complaint');
+  String name;
+  String landmark;
+  String comments;
+  var number;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +52,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                       textAlign: TextAlign.center,
                       onChanged: (value) {
                         //Do something with the user input.
+                        name = value;
                       },
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Your Name',
@@ -85,6 +94,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                       textAlign: TextAlign.center,
                       onChanged: (value) {
                         //Do something with the user input.
+                        number = value;
                       },
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Your Phone No.',
@@ -128,6 +138,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                       textAlign: TextAlign.center,
                       onChanged: (value) {
                         //Do something with the user input.
+                        landmark = value;
                       },
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Nearby Landmarks',
@@ -170,6 +181,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                     textAlign: TextAlign.center,
                     onChanged: (value) {
                       //Do something with the user input.
+                      comments = value;
                     },
 
                     decoration: kTextFieldDecoration.copyWith(
@@ -185,6 +197,22 @@ class _New_ComplaintState extends State<New_Complaint> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
+            RoundedButtonlogin(
+              onPressed: () async {
+                await collectionReference.add({
+                  'name': name,
+                  'Phone': number,
+                  'landmark': landmark,
+                  'comments': comments,
+                }).then((value) {
+                  print(value.id);
+                });
+              },
+              title: 'Submit',
             ),
           ],
         ),
