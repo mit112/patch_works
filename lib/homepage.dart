@@ -3,6 +3,7 @@ import 'new_complaint.dart';
 import 'constants.dart';
 import 'package:patch_works/services/auth.dart';
 import 'package:provider/provider.dart';
+import 'view_complain.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -51,7 +52,16 @@ class _HomepageState extends State<Homepage> {
                     child: RoundedButton(
                       title: 'View Registered Complaint',
                       colour: Color(0XFFB577FF),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return View_Complain();
+                            },
+                          ),
+                        );
+                      },
                     ),
                   ),
                   FittedBox(

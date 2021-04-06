@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'constants.dart';
@@ -8,13 +9,18 @@ class New_Complaint extends StatefulWidget {
 }
 
 class _New_ComplaintState extends State<New_Complaint> {
-  final TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController name = TextEditingController();
   final CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('complaint');
-  String name;
+  // String name;
   String landmark;
   String comments;
   var number;
+  // getData() async {
+  //   // ignore: deprecated_member_use
+  //   return await collectionReference.getDocuments();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +49,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                   ),
                   Expanded(
                     child: TextField(
+                      controller: name,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'PoiretOne',
@@ -52,7 +59,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                       textAlign: TextAlign.center,
                       onChanged: (value) {
                         //Do something with the user input.
-                        name = value;
+                        // name = value;
                       },
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Your Name',
@@ -204,13 +211,27 @@ class _New_ComplaintState extends State<New_Complaint> {
             RoundedButtonlogin(
               onPressed: () async {
                 await collectionReference.add({
-                  'name': name,
+                  'name': name.text,
                   'Phone': number,
                   'landmark': landmark,
                   'comments': comments,
                 }).then((value) {
                   print(value.id);
                 });
+
+                // await collectionReference.get().then((querySnapshot) {
+                //   querySnapshot.docs.forEach((result) {
+                //     print(result.data());
+                //   });
+                // });
+                //     .collection('complaint')
+                //     .doc(collectionReference.path)
+                //     .get()
+                //     .then((value) {
+                //   print(value.data());
+                // });
+                // collectionReference.get().toString();
+                // print(collectionReference.doc().get().toString());
               },
               title: 'Submit',
             ),
