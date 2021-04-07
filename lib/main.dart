@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Patch Works',
         theme: ThemeData(
+          accentColor: Colors.white,
           appBarTheme: AppBarTheme(
             brightness: Brightness.dark,
           ),

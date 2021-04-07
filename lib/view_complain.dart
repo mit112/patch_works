@@ -49,19 +49,31 @@ class _View_ComplainState extends State<View_Complain> {
                     SizedBox(
                       height: 15.0,
                     ),
-                    Card(
-                      child: ListTile(
-                        leading: Text('1'),
-                        title: Text(
-                          '${complaint['landmark']}',
-                          style: kFieldStyle.copyWith(color: Colors.black87),
-                        ),
-                        subtitle: Text(
-                          '${complaint['name']}',
-                          style: kFieldStyle.copyWith(color: Colors.black87),
-                        ),
+                    ExpansionTile(
+                      iconColor: Colors.greenAccent,
+                      collapsedIconColor: Colors.white,
+                      title: Text(
+                        '${complaint['landmark']},',
+                        style: kFieldStyle,
+                      ),
+                      subtitle: Text(
+                        '${complaint['name']}',
+                        style: kFieldStyle,
                       ),
                     ),
+                    // Card(
+                    //   child: ListTile(
+                    //     leading: Text('1'),
+                    //     title: Text(
+                    //       '${complaint['landmark']}',
+                    //       style: kFieldStyle.copyWith(color: Colors.black87),
+                    //     ),
+                    //     subtitle: Text(
+                    //       '${complaint['name']}',
+                    //       style: kFieldStyle.copyWith(color: Colors.black87),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 );
                 // return ListTile(
