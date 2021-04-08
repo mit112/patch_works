@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'user.dart';
@@ -19,6 +20,9 @@ class _View_ComplainState extends State<View_Complain> {
 
   final CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('complaint');
+  // .doc(FirebaseAuth.instance.currentUser.uid)
+  // .collection('users');
+
   getData() async {
     // ignore: deprecated_member_use
     return await collectionReference.getDocuments();
@@ -41,12 +45,12 @@ class _View_ComplainState extends State<View_Complain> {
         // stream: db.userStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            var user = snapshot.data;
+            // var user = snapshot.data;
             return ListView.separated(
               separatorBuilder: (_, snapshot) => Divider(
                 height: 25.0,
               ),
-              itemCount: 5,
+              itemCount: snapshot.data.docs.length,
               itemBuilder: (context, index) {
                 DocumentSnapshot complaint = snapshot.data.docs[index];
                 return Column(
