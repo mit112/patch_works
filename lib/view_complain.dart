@@ -19,10 +19,10 @@ class _View_ComplainState extends State<View_Complain> {
 
   final CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('complaint');
-  // getData() async {
-  //   // ignore: deprecated_member_use
-  //   return await collectionReference.getDocuments();
-  // }
+  getData() async {
+    // ignore: deprecated_member_use
+    return await collectionReference.getDocuments();
+  }
 
   get index => null;
   // final DatabaseService db = DatabaseService();
@@ -36,9 +36,9 @@ class _View_ComplainState extends State<View_Complain> {
         centerTitle: true,
         backgroundColor: Color(0XFFB577FF),
       ),
-      body: StreamBuilder<Users>(
-        // stream: collectionReference.snapshots(),
-        stream: db.userStream(),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: collectionReference.snapshots(),
+        // stream: db.userStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var user = snapshot.data;
@@ -46,9 +46,9 @@ class _View_ComplainState extends State<View_Complain> {
               separatorBuilder: (_, snapshot) => Divider(
                 height: 25.0,
               ),
-              itemCount: 3,
+              itemCount: 5,
               itemBuilder: (context, index) {
-                // DocumentSnapshot complaint = snapshot.data[index];
+                DocumentSnapshot complaint = snapshot.data.docs[index];
                 return Column(
                   children: [
                     SizedBox(
@@ -59,13 +59,13 @@ class _View_ComplainState extends State<View_Complain> {
                       iconColor: Colors.greenAccent,
                       collapsedIconColor: Colors.white,
                       title: Text(
-                        user.name,
+                        '${complaint['landmark']},',
+                        // user.name,
                         style: kFieldStyle,
-                        // '${complaint['landmark']},'
                       ),
                       subtitle: Text(
-                        user.landmark,
-                        // '${complaint['Phone']}',
+                        // user.landmark,
+                        '${complaint['Phone']}',
                         style: kFieldStyle,
                       ),
                     ),

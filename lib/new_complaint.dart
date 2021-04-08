@@ -18,16 +18,16 @@ class _New_ComplaintState extends State<New_Complaint> {
   // final TextEditingController number = new TextEditingController();
   // final TextEditingController comments = TextEditingController();
 
-  // final CollectionReference collectionReference =
-  //     FirebaseFirestore.instance.collection('complaint');
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('complaint');
   String name;
   String landmark;
   var number;
   String comments;
-  // getData() async {
-  //   // ignore: deprecated_member_use
-  //   return await collectionReference.getDocuments();
-  // }
+  getData() async {
+    // ignore: deprecated_member_use
+    return await collectionReference.getDocuments();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -225,16 +225,15 @@ class _New_ComplaintState extends State<New_Complaint> {
             ),
             RoundedButtonlogin(
               onPressed: () async {
-                await saveData(name, number, landmark);
-                // await collectionReference.add({
-                //   'name': name.text,
-                //   'Phone': number,
-                //   'landmark': landmark,
-                //   'comments': comments,
-                // }).then((value) {
-                //   print(value.id);
-                // });
-                Navigator.pop(context);
+                // await saveData(name, number, landmark);
+                await collectionReference.add({
+                  'name': name,
+                  'Phone': number,
+                  'landmark': landmark,
+                  'comments': comments,
+                }).then((value) {
+                  print(value.id);
+                });
 
                 // await collectionReference.get().then((querySnapshot) {
                 //   querySnapshot.docs.forEach((result) {
@@ -249,6 +248,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                 // });
                 // collectionReference.get().toString();
                 // print(collectionReference.doc().get().toString());
+                Navigator.pop(context);
               },
               title: 'Submit',
             ),
