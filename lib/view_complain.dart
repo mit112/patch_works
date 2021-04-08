@@ -14,6 +14,9 @@ class View_Complain extends StatefulWidget {
 
 // ignore: camel_case_types
 class _View_ComplainState extends State<View_Complain> {
+  DatabaseService db = DatabaseService();
+  DocumentSnapshot doc;
+
   final CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('complaint');
   // getData() async {
@@ -33,31 +36,36 @@ class _View_ComplainState extends State<View_Complain> {
         centerTitle: true,
         backgroundColor: Color(0XFFB577FF),
       ),
-      body: StreamBuilder(
-        stream: collectionReference.snapshots(),
+      body: StreamBuilder<Users>(
+        // stream: collectionReference.snapshots(),
+        stream: db.userStream(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            var user = snapshot.data;
             return ListView.separated(
               separatorBuilder: (_, snapshot) => Divider(
                 height: 25.0,
               ),
-              itemCount: snapshot.data.documents.length,
+              itemCount: 3,
               itemBuilder: (context, index) {
-                DocumentSnapshot complaint = snapshot.data.documents[index];
+                // DocumentSnapshot complaint = snapshot.data[index];
                 return Column(
                   children: [
                     SizedBox(
                       height: 15.0,
                     ),
+
                     ExpansionTile(
                       iconColor: Colors.greenAccent,
                       collapsedIconColor: Colors.white,
                       title: Text(
-                        '${complaint['landmark']},',
+                        user.name,
                         style: kFieldStyle,
+                        // '${complaint['landmark']},'
                       ),
                       subtitle: Text(
-                        '${complaint['name']}',
+                        user.landmark,
+                        // '${complaint['Phone']}',
                         style: kFieldStyle,
                       ),
                     ),

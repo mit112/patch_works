@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'services/auth.dart';
+import 'user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'constants.dart';
 
@@ -9,13 +11,19 @@ class New_Complaint extends StatefulWidget {
 }
 
 class _New_ComplaintState extends State<New_Complaint> {
-  final TextEditingController name = TextEditingController();
-  final CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('complaint');
+  DatabaseService db = DatabaseService();
+  DocumentSnapshot doc;
+  final TextEditingController name = new TextEditingController();
+  // final TextEditingController landmark = new TextEditingController();
+  // final TextEditingController number = new TextEditingController();
+  // final TextEditingController comments = TextEditingController();
+
+  // final CollectionReference collectionReference =
+  //     FirebaseFirestore.instance.collection('complaint');
   // String name;
   String landmark;
-  String comments;
   var number;
+  String comments;
   // getData() async {
   //   // ignore: deprecated_member_use
   //   return await collectionReference.getDocuments();
@@ -92,17 +100,20 @@ class _New_ComplaintState extends State<New_Complaint> {
                   ),
                   Expanded(
                     child: TextField(
+                      // controller: number,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'PoiretOne',
                       ),
                       // obscureText: true,
+
                       autofocus: false,
                       textAlign: TextAlign.center,
                       onChanged: (value) {
                         //Do something with the user input.
                         number = value;
                       },
+
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Your Phone No.',
                         hintStyle: TextStyle(
@@ -136,6 +147,8 @@ class _New_ComplaintState extends State<New_Complaint> {
                   ),
                   Expanded(
                     child: TextField(
+                      // controller: landmark,
+
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'PoiretOne',
@@ -147,6 +160,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                         //Do something with the user input.
                         landmark = value;
                       },
+
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Nearby Landmarks',
                         hintStyle: TextStyle(
@@ -177,8 +191,9 @@ class _New_ComplaintState extends State<New_Complaint> {
                 ),
                 Expanded(
                   child: TextField(
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
+                    // controller: comments,
+                    // keyboardType: TextInputType.multiline,
+                    // maxLines: null,
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'PoiretOne',
@@ -210,14 +225,15 @@ class _New_ComplaintState extends State<New_Complaint> {
             ),
             RoundedButtonlogin(
               onPressed: () async {
-                await collectionReference.add({
-                  'name': name.text,
-                  'Phone': number,
-                  'landmark': landmark,
-                  'comments': comments,
-                }).then((value) {
-                  print(value.id);
-                });
+                await saveData(name.text, number, landmark);
+                // await collectionReference.add({
+                //   'name': name.text,
+                //   'Phone': number,
+                //   'landmark': landmark,
+                //   'comments': comments,
+                // }).then((value) {
+                //   print(value.id);
+                // });
 
                 // await collectionReference.get().then((querySnapshot) {
                 //   querySnapshot.docs.forEach((result) {
