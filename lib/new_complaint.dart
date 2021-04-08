@@ -234,6 +234,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                 // }).then((value) {
                 //   print(value.id);
                 // });
+                Navigator.pop(context);
 
                 // await collectionReference.get().then((querySnapshot) {
                 //   querySnapshot.docs.forEach((result) {

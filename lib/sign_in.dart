@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:patch_works/services/auth.dart';
+import 'package:patch_works/services/google_auth.dart';
 import 'constants.dart';
 import 'package:provider/provider.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:connectivity/connectivity.dart';
 
@@ -150,6 +152,12 @@ class _AuthenticateState extends State<Authenticate> {
                             print(e);
                           }
                         }
+                      },
+                    ),
+                    RoundedButtonlogin(
+                      title: 'Log In With Google',
+                      onPressed: () {
+                        signInWithGoogle(context);
                       },
                     ),
                   ],
