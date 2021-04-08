@@ -13,14 +13,14 @@ class New_Complaint extends StatefulWidget {
 class _New_ComplaintState extends State<New_Complaint> {
   DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
-  final TextEditingController name = new TextEditingController();
+  // final TextEditingController name = new TextEditingController();
   // final TextEditingController landmark = new TextEditingController();
   // final TextEditingController number = new TextEditingController();
   // final TextEditingController comments = TextEditingController();
 
   // final CollectionReference collectionReference =
   //     FirebaseFirestore.instance.collection('complaint');
-  // String name;
+  String name;
   String landmark;
   var number;
   String comments;
@@ -57,7 +57,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                   ),
                   Expanded(
                     child: TextField(
-                      controller: name,
+                      // controller: name,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'PoiretOne',
@@ -67,7 +67,7 @@ class _New_ComplaintState extends State<New_Complaint> {
                       textAlign: TextAlign.center,
                       onChanged: (value) {
                         //Do something with the user input.
-                        // name = value;
+                        name = value;
                       },
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Your Name',
@@ -225,7 +225,7 @@ class _New_ComplaintState extends State<New_Complaint> {
             ),
             RoundedButtonlogin(
               onPressed: () async {
-                await saveData(name.text, number, landmark);
+                await saveData(name, number, landmark);
                 // await collectionReference.add({
                 //   'name': name.text,
                 //   'Phone': number,
