@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'new_complaint.dart';
 import 'constants.dart';
 import 'package:patch_works/services/auth.dart';
+import 'package:provider/provider.dart';
 import 'package:provider/provider.dart';
 import 'view_complain.dart';
 
@@ -70,7 +72,8 @@ class _HomepageState extends State<Homepage> {
                       title: 'Log Out',
                       colour: Color(0XFFB577FF),
                       onPressed: () {
-                        context.read<AuthService>().signOut();
+                        // context.read<AuthService>().signOut();
+                        logout();
                       },
                     ),
                   ),

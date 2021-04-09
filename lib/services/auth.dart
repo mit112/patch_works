@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:patch_works/services/google_auth.dart';
 import '../user.dart';
 
 DatabaseService db = DatabaseService();
@@ -16,7 +16,9 @@ class AuthService {
   Future<String> signIn({String email, String password}) async {
     try {
       final user = await auth.signInWithEmailAndPassword(
-          email: email, password: password);
+        email: email,
+        password: password,
+      );
       DocumentSnapshot doc;
       await db.getUserByID(user.user.uid).then((value) => {doc = value});
       return "Signed in";
@@ -78,4 +80,9 @@ saveData(
     'landmark': landmark,
     'Phone': Phone,
   }, SetOptions(merge: true));
+}
+
+void logout() async {
+  await googleSignIn.disconnect();
+  FirebaseAuth.instance.signOut();
 }
