@@ -9,6 +9,7 @@ GoogleSignIn googleSignIn = GoogleSignIn();
 final FirebaseAuth auth = FirebaseAuth.instance;
 CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+// ignore: missing_return
 Future<bool> signInWithGoogle(BuildContext context) async {
   try {
     final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
@@ -22,11 +23,13 @@ Future<bool> signInWithGoogle(BuildContext context) async {
       final UserCredential authResult =
           await auth.signInWithCredential(credential);
       final User user = authResult.user;
+      String uid = auth.currentUser.uid.toString();
       var userData = {
         'name': googleSignInAccount.displayName,
         'provider': 'google',
         'photoUrl': googleSignInAccount.photoUrl,
         'email': googleSignInAccount.email,
+        'id': googleSignInAccount.id,
       };
       users.doc(user.uid).get().then((doc) => {
             if (doc.exists)

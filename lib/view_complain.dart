@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'user.dart';
+import 'services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'services/auth.dart';
 
@@ -18,8 +19,12 @@ class _View_ComplainState extends State<View_Complain> {
   DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
 
-  final CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('complaint');
+  // final CollectionReference collectionReference =
+  //     FirebaseFirestore.instance.collection('complaint');
+  String uid = auth.currentUser.uid.toString();
+
+  CollectionReference get collectionReference =>
+      users.doc(uid).collection('complaint');
   // .doc(FirebaseAuth.instance.currentUser.uid)
   // .collection('users');
 

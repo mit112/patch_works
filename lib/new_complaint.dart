@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'services/auth.dart';
 import 'user.dart';
+import 'services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'constants.dart';
 
@@ -13,13 +14,24 @@ class New_Complaint extends StatefulWidget {
 class _New_ComplaintState extends State<New_Complaint> {
   DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
+
   // final TextEditingController name = new TextEditingController();
   // final TextEditingController landmark = new TextEditingController();
   // final TextEditingController number = new TextEditingController();
   // final TextEditingController comments = TextEditingController();
 
-  final CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('complaint');
+  // final CollectionReference collectionReference =
+  //     FirebaseFirestore.instance.collection('complaint');
+  // CollectionReference users = FirebaseFirestore.instance.collection('users').collection('complaint');
+  // final FirebaseAuth auth = FirebaseAuth.instance;
+  // final UserCredential authResult =
+  //     await auth.signInWithCredential(credential);
+
+  //
+  String uid = auth.currentUser.uid.toString();
+
+  CollectionReference get collectionReference =>
+      users.doc(uid).collection('complaint');
   String name;
   String landmark;
   var number;
@@ -235,19 +247,6 @@ class _New_ComplaintState extends State<New_Complaint> {
                   print(value.id);
                 });
 
-                // await collectionReference.get().then((querySnapshot) {
-                //   querySnapshot.docs.forEach((result) {
-                //     print(result.data());
-                //   });
-                // });
-                //     .collection('complaint')
-                //     .doc(collectionReference.path)
-                //     .get()
-                //     .then((value) {
-                //   print(value.data());
-                // });
-                // collectionReference.get().toString();
-                // print(collectionReference.doc().get().toString());
                 Navigator.pop(context);
               },
               title: 'Submit',
