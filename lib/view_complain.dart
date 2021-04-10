@@ -65,8 +65,9 @@ class _View_ComplainState extends State<View_Complain> {
                     ),
 
                     ExpansionTile(
-                      iconColor: Colors.greenAccent,
-                      collapsedIconColor: Colors.white,
+                      // iconColor: Colors.greenAccent,
+                      // collapsedIconColor: Colors.white,
+
                       title: Text(
                         '${complaint['landmark']},',
                         // user.name,
@@ -79,157 +80,9 @@ class _View_ComplainState extends State<View_Complain> {
                       ),
                     ),
                     // Card(
-                    //   child: ListTile(
-                    //     leading: Text('1'),
-                    //     title: Text(
-                    //       '${complaint['landmark']}',
-                    //       style: kFieldStyle.copyWith(color: Colors.black87),
-                    //     ),
-                    //     subtitle: Text(
-                    //       '${complaint['name']}',
-                    //       style: kFieldStyle.copyWith(color: Colors.black87),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 );
-                // return ListTile(
-                //
-                //   leading: Text(
-                //     '1',
-                //     style: kFieldStyle,
-                //   ),
-                //   title: Text(
-                //     '${complaint['landmark']}',
-                //     style: kFieldStyle,
-                //   ),
-                //   subtitle: Text(
-                //     '${complaint['name']}',
-                //     style: kFieldStyle,
-                //   ),
-                // );
               },
-
-              // StreamBuilder(
-              //   stream: collectionReference.snapshots(),
-              //   builder: (BuildContext context,
-              //       AsyncSnapshot<QuerySnapshot> snapshot) {
-              //     if (snapshot.hasData) {
-              //       return ListView(
-              //         children: snapshot.data.docs
-              //             .map((e) => Column(
-              //                   children: [
-              //                     ListTile(
-              //                       title: Text(e['name']),
-              //                     ),
-              //                     Divider(
-              //                       color: Colors.black.withOpacity(0.6),
-              //                       thickness: 2,
-              //                     )
-              //                   ],
-              //                 ))
-              //             .toList(),
-              //       );
-              //     }
-              //     return Center(
-              //       child: CircularProgressIndicator(),
-              //     );
-              //   },
-              // ),
-              // SizedBox(
-              //   height: 20.0,
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(5.0),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         'Name:- ',
-              //         style: kFieldStyle,
-              //       ),
-              //       SizedBox(
-              //         width: 5.0,
-              //       ),
-              //       Expanded(
-              //         child: Text(
-              //           // ignore: deprecated_member_use
-              //           snapshot.data.documents[1].data()['name'],
-              //           style: TextStyle(color: Colors.white),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 15.0,
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(5.0),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         'Phone No:- ',
-              //         style: kFieldStyle,
-              //       ),
-              //       SizedBox(
-              //         width: 5.0,
-              //       ),
-              //       Expanded(
-              //         child: Text(
-              //           snapshot.data.documents[1].data()['Phone'],
-              //           style: TextStyle(color: Colors.white),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 15.0,
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(5.0),
-              //   child: Row(
-              //     crossAxisAlignment: CrossAxisAlignment.center,
-              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //     children: [
-              //       Text(
-              //         'Landmarks:- ',
-              //         style: kFieldStyle,
-              //       ),
-              //       SizedBox(
-              //         width: 5.0,
-              //       ),
-              //       Expanded(
-              //         child: Text(
-              //           snapshot.data.documents[1].data()['landmark'],
-              //           style: TextStyle(color: Colors.white),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 15.0,
-              // ),
-              // Row(
-              //   crossAxisAlignment: CrossAxisAlignment.center,
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-              //     Text(
-              //       'Comments:- ',
-              //       style: kFieldStyle,
-              //     ),
-              //     SizedBox(
-              //       width: 5.0,
-              //     ),
-              //     Expanded(
-              //       child: Text(
-              //         snapshot.data.documents[1].data()['comments'],
-              //         style: TextStyle(color: Colors.white),
-              //       ),
-              //     ),
-              //   ],
-              // ),
             );
           } else
             return Container();
