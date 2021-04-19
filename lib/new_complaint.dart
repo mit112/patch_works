@@ -12,7 +12,7 @@ class New_Complaint extends StatefulWidget {
 }
 
 class _New_ComplaintState extends State<New_Complaint> {
-  DatabaseService db = DatabaseService();
+  // DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
 
   // final TextEditingController name = new TextEditingController();
@@ -36,10 +36,10 @@ class _New_ComplaintState extends State<New_Complaint> {
   String landmark;
   var number;
   String comments;
-  getData() async {
-    // ignore: deprecated_member_use
-    return await collectionReference.getDocuments();
-  }
+  // getData() async {
+  //   // ignore: deprecated_member_use
+  //   return await collectionReference.getDocuments();
+  // }
 
   @override
   Widget build(BuildContext context) {

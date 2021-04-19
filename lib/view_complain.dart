@@ -16,7 +16,7 @@ class View_Complain extends StatefulWidget {
 
 // ignore: camel_case_types
 class _View_ComplainState extends State<View_Complain> {
-  DatabaseService db = DatabaseService();
+  // DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
 
   // final CollectionReference collectionReference =
@@ -25,6 +25,7 @@ class _View_ComplainState extends State<View_Complain> {
 
   CollectionReference get collectionReference =>
       users.doc(uid).collection('complaint');
+
   // .doc(FirebaseAuth.instance.currentUser.uid)
   // .collection('users');
 
