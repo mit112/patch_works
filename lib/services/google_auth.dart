@@ -55,8 +55,8 @@ Future<bool> signInWithGoogle(BuildContext context) async {
               }
           });
     }
-  } catch (PlatformException) {
-    print(PlatformException);
+  } catch (e) {
+    print(e);
     print('Sign in not successful!');
   }
 }

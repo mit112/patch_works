@@ -1,41 +1,70 @@
 {
   "project_info": {
-    "project_number": "389795803973",
-    "project_id": "patch-works",
-    "storage_bucket": "patch-works.appspot.com"
+    "project_number": "570181999385",
+    "project_id": "patch-works-f822e",
+    "storage_bucket": "patch-works-f822e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:389795803973:android:b30618e2706e5474ec042c",
+        "mobilesdk_app_id": "1:570181999385:android:f89c97d7e3af994cedc388",
         "android_client_info": {
           "package_name": "com.example.patch_works"
         }
       },
       "oauth_client": [
         {
-          "client_id": "389795803973-hbajop2jp7056b984b4d8a6lu033dm8b.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.patch_works",
-            "certificate_hash": "e7d56245eae91af15e2e9c2f0fa700443d53caca"
-          }
-        },
-        {
-          "client_id": "389795803973-huqs0pcjbn3s9p272kfbipd56atns16e.apps.googleusercontent.com",
+          "client_id": "570181999385-det79m6flbscpfkg5dl1suvt79o7e3ip.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC8BY6Wn0aHPhrit2McDdcLDH-6Nr2fkCU"
+          "current_key": "AIzaSyCk-yPEw1v7mJQ3DVc1WHiZDtC_oMd6Fkk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "389795803973-huqs0pcjbn3s9p272kfbipd56atns16e.apps.googleusercontent.com",
+              "client_id": "570181999385-det79m6flbscpfkg5dl1suvt79o7e3ip.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:570181999385:android:c74131ae2041cfb5edc388",
+        "android_client_info": {
+          "package_name": "com.example.patchworks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "570181999385-2r39thipldd5javruc5nurjlg9urgmtf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.patchworks",
+            "certificate_hash": "e7d56245eae91af15e2e9c2f0fa700443d53caca"
+          }
+        },
+        {
+          "client_id": "570181999385-det79m6flbscpfkg5dl1suvt79o7e3ip.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCk-yPEw1v7mJQ3DVc1WHiZDtC_oMd6Fkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "570181999385-det79m6flbscpfkg5dl1suvt79o7e3ip.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
