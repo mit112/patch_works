@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:patch_works/services/google_auth.dart';
-import '../user.dart';
+import 'user.dart';
 
 DatabaseService db = DatabaseService();
 
@@ -68,7 +68,7 @@ class DatabaseService {
 
 saveData(
   String name,
-  String Phone,
+  String phone,
   String landmark,
 ) async {
   FirebaseFirestore.instance
@@ -77,7 +77,7 @@ saveData(
       .set({
     'name': name,
     'landmark': landmark,
-    'Phone': Phone,
+    'Phone': phone,
   }, SetOptions(merge: true));
 }
 

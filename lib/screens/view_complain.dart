@@ -1,21 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'constants.dart';
-import 'user.dart';
-import 'services/google_auth.dart';
+import '../constants/constants.dart';
+import '../services/user.dart';
+import '../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'services/auth.dart';
+import '../services/auth.dart';
 
 import 'new_complaint.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-class View_Complain extends StatefulWidget {
+class ViewComplain extends StatefulWidget {
   @override
-  _View_ComplainState createState() => _View_ComplainState();
+  _ViewComplainState createState() => _ViewComplainState();
 }
 
 // ignore: camel_case_types
-class _View_ComplainState extends State<View_Complain> {
+class _ViewComplainState extends State<ViewComplain> {
   // DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
 

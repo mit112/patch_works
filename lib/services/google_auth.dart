@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
-import 'package:patch_works/homepage.dart';
+import '../screens/homepage.dart';
 
 GoogleSignIn googleSignIn = GoogleSignIn();
 final FirebaseAuth auth = FirebaseAuth.instance;

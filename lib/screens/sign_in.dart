@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patch_works/services/auth.dart';
 import 'package:patch_works/services/google_auth.dart';
-import 'constants.dart';
+import '../constants/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 

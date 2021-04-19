@@ -1,17 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'services/auth.dart';
-import 'user.dart';
-import 'services/google_auth.dart';
+import '../services/auth.dart';
+import '../services/user.dart';
+import '../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'constants.dart';
+import '../constants/constants.dart';
 
-class New_Complaint extends StatefulWidget {
+class NewComplaint extends StatefulWidget {
   @override
-  _New_ComplaintState createState() => _New_ComplaintState();
+  _NewComplaintState createState() => _NewComplaintState();
 }
 
-class _New_ComplaintState extends State<New_Complaint> {
+class _NewComplaintState extends State<NewComplaint> {
   // DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'new_complaint.dart';
-import 'constants.dart';
+import '../constants/constants.dart';
 import 'package:patch_works/services/auth.dart';
 import 'view_complain.dart';
 
@@ -39,7 +39,7 @@ class _HomepageState extends State<Homepage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return New_Complaint();
+                              return NewComplaint();
                             },
                           ),
                         );
@@ -56,7 +56,7 @@ class _HomepageState extends State<Homepage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return View_Complain();
+                              return ViewComplain();
                             },
                           ),
                         );

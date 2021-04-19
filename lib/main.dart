@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:patch_works/homepage.dart';
+import 'screens/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'sign_in.dart';
+import 'screens/sign_in.dart';
 import 'services/auth.dart';
 import 'package:provider/provider.dart';
 
