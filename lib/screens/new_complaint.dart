@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:patch_works/services/location.dart';
 import '../services/auth.dart';
 import '../services/user.dart';
 import '../services/google_auth.dart';
@@ -36,11 +37,18 @@ class _NewComplaintState extends State<NewComplaint> {
   String landmark;
   var number;
   String comments;
+  Location location = Location();
   // getData() async {
   //   // ignore: deprecated_member_use
   //   return await collectionReference.getDocuments();
   // }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    location.getCurrentLocation();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -243,6 +251,8 @@ class _NewComplaintState extends State<NewComplaint> {
                   'Phone': number,
                   'landmark': landmark,
                   'comments': comments,
+                  'latitude': location.latitude,
+                  'longitude': location.longitude,
                 }).then((value) {
                   print(value.id);
                 });
