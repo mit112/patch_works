@@ -1,11 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:patch_works/screens/camera_screen.dart';
 import 'package:patch_works/services/location.dart';
 import '../services/auth.dart';
 import '../services/user.dart';
 import '../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../constants/constants.dart';
+import 'package:camera/camera.dart';
 
 class NewComplaint extends StatefulWidget {
   @override
@@ -48,6 +50,7 @@ class _NewComplaintState extends State<NewComplaint> {
     // TODO: implement initState
     super.initState();
     location.getCurrentLocation();
+
   }
   @override
   Widget build(BuildContext context) {
@@ -260,6 +263,24 @@ class _NewComplaintState extends State<NewComplaint> {
                 Navigator.pop(context);
               },
               title: 'Submit',
+            ),
+            RoundedButton(
+              title: 'Take Picture',
+              colour: Color(0XFFB577FF),
+              onPressed: () async {
+                WidgetsFlutterBinding.ensureInitialized();
+
+                // Obtain a list of the available cameras on the device.
+                final cameras = await availableCameras();
+
+                // Get a specific camera from the list of available cameras.
+                final firstCamera = cameras.first;
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return CameraScreen(camera: firstCamera,);
+                  },
+                ),);
+              },
             ),
           ],
         ),
