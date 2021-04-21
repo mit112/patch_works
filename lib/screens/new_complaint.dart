@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:patch_works/screens/camera_screen.dart';
@@ -10,6 +12,10 @@ import '../constants/constants.dart';
 import 'package:camera/camera.dart';
 
 class NewComplaint extends StatefulWidget {
+  final String imagePath;
+
+  const NewComplaint({Key key, this.imagePath}) : super(key: key);
+
   @override
   _NewComplaintState createState() => _NewComplaintState();
 }
@@ -64,6 +70,14 @@ class _NewComplaintState extends State<NewComplaint> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(
+              height: 20.0,
+            ),
+            Container(
+              height: 150,
+              width: 150,
+              child: Image.file(File(widget.imagePath)),
+            ),
             SizedBox(
               height: 20.0,
             ),
@@ -268,18 +282,7 @@ class _NewComplaintState extends State<NewComplaint> {
               title: 'Take Picture',
               colour: Color(0XFFB577FF),
               onPressed: () async {
-                WidgetsFlutterBinding.ensureInitialized();
 
-                // Obtain a list of the available cameras on the device.
-                final cameras = await availableCameras();
-
-                // Get a specific camera from the list of available cameras.
-                final firstCamera = cameras.first;
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return CameraScreen(camera: firstCamera,);
-                  },
-                ),);
               },
             ),
           ],

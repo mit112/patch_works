@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:patch_works/screens/new_complaint.dart';
 
 import 'display_picture_screen.dart';
 
@@ -88,11 +89,9 @@ class _CameraScreenState extends State<CameraScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(
-                  // Pass the automatically generated path to
-                  // the DisplayPictureScreen widget.
+                builder: (context) => NewComplaint(
                   imagePath: image?.path,
-                ),
+                )
               ),
             );
           } catch (e) {

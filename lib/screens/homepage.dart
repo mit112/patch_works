@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'camera_screen.dart';
 import 'new_complaint.dart';
 import '../constants/constants.dart';
 import 'package:patch_works/services/auth.dart';
 import 'view_complain.dart';
+import 'package:camera/camera.dart';
 
 class Homepage extends StatefulWidget {
   @override
@@ -34,15 +36,27 @@ class _HomepageState extends State<Homepage> {
                     child: RoundedButton(
                       title: 'Register New Complaint',
                       colour: Color(0XFFB577FF),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return NewComplaint();
-                            },
-                          ),
-                        );
+                      onPressed: () async {
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) {
+                        //       return NewComplaint();
+                        //     },
+                        //   ),
+                        // );
+                        WidgetsFlutterBinding.ensureInitialized();
+
+                        // Obtain a list of the available cameras on the device.
+                        final cameras = await availableCameras();
+
+                        // Get a specific camera from the list of available cameras.
+                        final firstCamera = cameras.first;
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return CameraScreen(camera: firstCamera,);
+                          },
+                        ),);
                       },
                     ),
                   ),
@@ -70,7 +84,7 @@ class _HomepageState extends State<Homepage> {
                       colour: Color(0XFFB577FF),
                       onPressed: () {
                         // context.read<AuthService>().signOut();
-                        logout();
+                        // logout();
                       },
                     ),
                   ),
