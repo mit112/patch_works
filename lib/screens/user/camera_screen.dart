@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:patch_works/screens/new_complaint.dart';
+import 'file:///C:/Kashish/Projects/Flutter/patch_works/lib/screens/user/new_complaint.dart';
 
 import 'display_picture_screen.dart';
 

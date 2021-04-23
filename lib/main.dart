@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'screens/homepage.dart';
+import 'screens/admin/admin_homepage.dart';
+import 'screens/user/homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/sign_in.dart';
@@ -45,7 +46,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User>();
 
     if (firebaseUser != null) {
-      return Homepage();
+      return AdminHomepage();
     }
     return Authenticate();
   }

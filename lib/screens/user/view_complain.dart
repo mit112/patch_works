@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../constants/constants.dart';
-import '../services/user.dart';
-import '../services/google_auth.dart';
+import '../../constants/constants.dart';
+import '../../services/user.dart';
+import '../../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../services/auth.dart';
+import '../../services/auth.dart';
 
 import 'new_complaint.dart';
 import 'package:firebase_core/firebase_core.dart';

@@ -2,13 +2,13 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:patch_works/screens/camera_screen.dart';
+import 'file:///C:/Kashish/Projects/Flutter/patch_works/lib/screens/user/camera_screen.dart';
 import 'package:patch_works/services/location.dart';
-import '../services/auth.dart';
-import '../services/user.dart';
-import '../services/google_auth.dart';
+import '../../services/auth.dart';
+import '../../services/user.dart';
+import '../../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../constants/constants.dart';
+import '../../constants/constants.dart';
 import 'package:camera/camera.dart';
 
 class NewComplaint extends StatefulWidget {

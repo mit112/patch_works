@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'camera_screen.dart';
 import 'new_complaint.dart';
-import '../constants/constants.dart';
+import '../../constants/constants.dart';
 import 'package:patch_works/services/auth.dart';
 import 'view_complain.dart';
 import 'package:camera/camera.dart';
