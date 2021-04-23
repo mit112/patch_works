@@ -25,14 +25,27 @@ class _ViewComplainState extends State<ViewComplain> {
 
   CollectionReference get collectionReference =>
       users.doc(uid).collection('complaint');
+  Future getPosts() async {
+    QuerySnapshot qn = await collectionReference.get();
+    return qn.docs;
+  }
+
+  navigateToDetail(DocumentSnapshot post) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => DetailPage(
+                  post: post,
+                )));
+  }
 
   // .doc(FirebaseAuth.instance.currentUser.uid)
   // .collection('users');
-
-  getData() async {
-    // ignore: deprecated_member_use
-    return await collectionReference.getDocuments();
-  }
+  //
+  // getData() async {
+  //   // ignore: deprecated_member_use
+  //   return await collectionReference.getDocuments();
+  // }
 
   get index => null;
   // final DatabaseService db = DatabaseService();
@@ -46,48 +59,75 @@ class _ViewComplainState extends State<ViewComplain> {
         centerTitle: true,
         backgroundColor: Color(0XFFB577FF),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: collectionReference.snapshots(),
-        // stream: db.userStream(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            // var user = snapshot.data;
-            return ListView.separated(
-              separatorBuilder: (_, snapshot) => Divider(
-                height: 25.0,
-              ),
-              itemCount: snapshot.data.docs.length,
-              itemBuilder: (context, index) {
-                DocumentSnapshot complaint = snapshot.data.docs[index];
-                return Column(
-                  children: [
-                    SizedBox(
-                      height: 15.0,
-                    ),
-
-                    ExpansionTile(
-                      // iconColor: Colors.greenAccent,
-                      // collapsedIconColor: Colors.white,
-
-                      title: Text(
-                        '${complaint['landmark']},',
-                        // user.name,
-                        style: kFieldStyle,
-                      ),
-                      subtitle: Text(
-                        // user.landmark,
-                        '${complaint['Phone']}',
-                        style: kFieldStyle,
-                      ),
-                    ),
-                    // Card(
-                  ],
-                );
-              },
+      body: FutureBuilder(
+        future: getPosts(),
+        builder: (_, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: Text('Loading...'),
             );
-          } else
-            return Container();
+          } else {
+            return ListView.builder(
+                // ignore: missing_return
+                itemCount: snapshot.data.length,
+                itemBuilder: (_, index) {
+                  return ListTile(
+                    title: Text(
+                      snapshot.data[index].data()["landmark"],
+                      style: kFieldStyle,
+                    ),
+                    onTap: () => navigateToDetail(snapshot.data[index]),
+                  );
+                });
+          }
         },
+      ),
+    );
+  }
+}
+
+class DetailPage extends StatefulWidget {
+  final DocumentSnapshot post;
+  DetailPage({this.post});
+  @override
+  _DetailPageState createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black87,
+      appBar: AppBar(
+        title: Text(
+          widget.post.data()['landmark'],
+          style: kFieldStyle,
+        ),
+      ),
+      body: Container(
+        child: Padding(
+          padding: EdgeInsets.only(left: 10.0),
+          child: Column(
+            children: [
+              Text(
+                widget.post.data()['landmark'],
+                style: kFieldStyle,
+              ),
+              Text(
+                widget.post.data()['name'],
+                style: kFieldStyle,
+              ),
+              Text(
+                widget.post.data()['comments'],
+                style: kFieldStyle,
+              ),
+              Text(
+                widget.post.data()['Phone'],
+                style: kFieldStyle,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
