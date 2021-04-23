@@ -38,7 +38,7 @@ class _NewComplaintState extends State<NewComplaint> {
 
   //
   String uid = auth.currentUser.uid.toString();
-
+  // CollectionReference admin = FirebaseFirestore.instance.collection('Admin');
   CollectionReference get collectionReference =>
       users.doc(uid).collection('complaint');
   String name;
@@ -56,8 +56,8 @@ class _NewComplaintState extends State<NewComplaint> {
     // TODO: implement initState
     super.initState();
     location.getCurrentLocation();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -281,9 +281,7 @@ class _NewComplaintState extends State<NewComplaint> {
             RoundedButton(
               title: 'Take Picture',
               colour: Color(0XFFB577FF),
-              onPressed: () async {
-
-              },
+              onPressed: () async {},
             ),
           ],
         ),
