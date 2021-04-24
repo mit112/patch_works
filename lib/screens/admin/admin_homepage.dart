@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:patch_works/screens/admin/all_complaints.dart';
 import '../user/camera_screen.dart';
-import '../user/new_complaint.dart';
 import '../../constants/constants.dart';
-import 'package:patch_works/services/auth.dart';
-import '../user/view_complain.dart';
 import 'package:camera/camera.dart';
+import 'all_complaints.dart';
 
 class AdminHomepage extends StatefulWidget {
   @override
@@ -52,11 +51,16 @@ class _AdminHomepageState extends State<AdminHomepage> {
 
                         // Get a specific camera from the list of available cameras.
                         final firstCamera = cameras.first;
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return CameraScreen(camera: firstCamera,);
-                          },
-                        ),);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return CameraScreen(
+                                camera: firstCamera,
+                              );
+                            },
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -70,7 +74,7 @@ class _AdminHomepageState extends State<AdminHomepage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return ViewComplain();
+                              return AllComplaints();
                             },
                           ),
                         );

@@ -74,86 +74,86 @@ class _AuthenticateState extends State<Authenticate> {
                     SizedBox(
                       height: 50.0,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        style: TextStyle(
-                          letterSpacing: 1.2,
-                          fontSize: 20.0,
-                          color: Colors.white,
-                        ),
-                        autofocus: false,
-                        keyboardType: TextInputType.emailAddress,
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          //Do something with the user input.
-                          email = value;
-                        },
-                        decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Enter your email',
-                          hintStyle: TextStyle(
-                              color: Colors.white,
-                              letterSpacing: 2.0,
-                              fontFamily: kFont,
-                              fontSize: 25.0,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: TextField(
+                    //     style: TextStyle(
+                    //       letterSpacing: 1.2,
+                    //       fontSize: 20.0,
+                    //       color: Colors.white,
+                    //     ),
+                    //     autofocus: false,
+                    //     keyboardType: TextInputType.emailAddress,
+                    //     textAlign: TextAlign.center,
+                    //     onChanged: (value) {
+                    //       //Do something with the user input.
+                    //       email = value;
+                    //     },
+                    //     decoration: kTextFieldDecoration.copyWith(
+                    //       hintText: 'Enter your email',
+                    //       hintStyle: TextStyle(
+                    //           color: Colors.white,
+                    //           letterSpacing: 2.0,
+                    //           fontFamily: kFont,
+                    //           fontSize: 25.0,
+                    //           fontWeight: FontWeight.w500),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: TextField(
-                        style: TextStyle(
-                          letterSpacing: 1.2,
-                          fontSize: 20.0,
-                          color: Colors.white,
-                        ),
-                        obscureText: true,
-                        autofocus: false,
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          //Do something with the user input.
-                          password = value;
-                        },
-                        decoration: kTextFieldDecoration.copyWith(
-                          hintText: 'Enter your password',
-                          hintStyle: TextStyle(
-                              color: Colors.white,
-                              letterSpacing: 2.0,
-                              fontFamily: kFont,
-                              fontSize: 25.0,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(8.0),
+                    //   child: TextField(
+                    //     style: TextStyle(
+                    //       letterSpacing: 1.2,
+                    //       fontSize: 20.0,
+                    //       color: Colors.white,
+                    //     ),
+                    //     obscureText: true,
+                    //     autofocus: false,
+                    //     textAlign: TextAlign.center,
+                    //     onChanged: (value) {
+                    //       //Do something with the user input.
+                    //       password = value;
+                    //     },
+                    //     decoration: kTextFieldDecoration.copyWith(
+                    //       hintText: 'Enter your password',
+                    //       hintStyle: TextStyle(
+                    //           color: Colors.white,
+                    //           letterSpacing: 2.0,
+                    //           fontFamily: kFont,
+                    //           fontSize: 25.0,
+                    //           fontWeight: FontWeight.w500),
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20.0,
                     ),
-                    RoundedButtonlogin(
-                      title: 'Log In',
-                      onPressed: () async {
-                        var connectivityResult = await Connectivity()
-                            .checkConnectivity(); // User defined class
-                        print(connectivityResult);
-                        // ignore: unrelated_type_equality_checks
-                        if (connectivityResult == ConnectivityResult.mobile ||
-                            connectivityResult == ConnectivityResult.wifi) {
-                          try {
-                            context.read<AuthService>().signIn(
-                                  email: email.trim(),
-                                  password: password,
-                                );
-                            // final user = await _auth.signInWithEmailAndPassword(
-                            //     email: email.trim(), password: password);
-                          } catch (e) {
-                            print(e);
-                          }
-                        }
-                      },
-                    ),
+                    // RoundedButtonlogin(
+                    //   title: 'Log In',
+                    //   onPressed: () async {
+                    //     var connectivityResult = await Connectivity()
+                    //         .checkConnectivity(); // User defined class
+                    //     print(connectivityResult);
+                    //     // ignore: unrelated_type_equality_checks
+                    //     if (connectivityResult == ConnectivityResult.mobile ||
+                    //         connectivityResult == ConnectivityResult.wifi) {
+                    //       try {
+                    //         context.read<AuthService>().signIn(
+                    //               email: email.trim(),
+                    //               password: password,
+                    //             );
+                    //         // final user = await _auth.signInWithEmailAndPassword(
+                    //         //     email: email.trim(), password: password);
+                    //       } catch (e) {
+                    //         print(e);
+                    //       }
+                    //     }
+                    //   },
+                    // ),
                     RoundedButtonlogin(
                       title: 'Log In With Google',
                       onPressed: () {

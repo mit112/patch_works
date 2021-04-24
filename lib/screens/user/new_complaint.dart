@@ -1,15 +1,11 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Kashish/Projects/Flutter/patch_works/lib/screens/user/camera_screen.dart';
 import 'package:patch_works/services/location.dart';
-import '../../services/auth.dart';
-import '../../services/user.dart';
+
 import '../../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../constants/constants.dart';
-import 'package:camera/camera.dart';
 
 class NewComplaint extends StatefulWidget {
   final String imagePath;
@@ -38,7 +34,7 @@ class _NewComplaintState extends State<NewComplaint> {
 
   //
   String uid = auth.currentUser.uid.toString();
-  // CollectionReference admin = FirebaseFirestore.instance.collection('Admin');
+  CollectionReference admin = FirebaseFirestore.instance.collection('Admin');
   CollectionReference get collectionReference =>
       users.doc(uid).collection('complaint');
   String name;
@@ -264,6 +260,16 @@ class _NewComplaintState extends State<NewComplaint> {
               onPressed: () async {
                 // await saveData(name, number, landmark);
                 await collectionReference.add({
+                  'name': name,
+                  'Phone': number,
+                  'landmark': landmark,
+                  'comments': comments,
+                  'latitude': location.latitude,
+                  'longitude': location.longitude,
+                }).then((value) {
+                  print(value.id);
+                });
+                admin.add({
                   'name': name,
                   'Phone': number,
                   'landmark': landmark,

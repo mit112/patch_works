@@ -3,12 +3,12 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Kashish/Projects/Flutter/patch_works/lib/screens/user/new_complaint.dart';
+import 'new_complaint.dart';
+// import 'file:///C:/Kashish/Projects/Flutter/patch_works/lib/screens/user/new_complaint.dart';
 
 import 'display_picture_screen.dart';
 
 class CameraScreen extends StatefulWidget {
-
   final CameraDescription camera;
 
   const CameraScreen({
@@ -20,10 +20,7 @@ class CameraScreen extends StatefulWidget {
   _CameraScreenState createState() => _CameraScreenState();
 }
 
-
-
 class _CameraScreenState extends State<CameraScreen> {
-
   CameraController _controller;
   Future<void> _initializeControllerFuture;
 
@@ -34,10 +31,10 @@ class _CameraScreenState extends State<CameraScreen> {
     // To display the current output from the Camera,
     // create a CameraController.
     _controller = CameraController(
-        // Get a specific camera from the list of available cameras.
-        widget.camera,
-        // Define the resolution to use.
-        ResolutionPreset.medium,
+      // Get a specific camera from the list of available cameras.
+      widget.camera,
+      // Define the resolution to use.
+      ResolutionPreset.medium,
     );
 
     // Next, initialize the controller. This returns a Future.
@@ -54,7 +51,7 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
+      appBar: AppBar(
         backgroundColor: Color(0XFFB577FF),
         centerTitle: true,
         title: Text('Take Pothole\'s Picture'),
@@ -89,10 +86,9 @@ class _CameraScreenState extends State<CameraScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NewComplaint(
-                  imagePath: image?.path,
-                )
-              ),
+                  builder: (context) => NewComplaint(
+                        imagePath: image?.path,
+                      )),
             );
           } catch (e) {
             // If an error occurs, log the error to the console.

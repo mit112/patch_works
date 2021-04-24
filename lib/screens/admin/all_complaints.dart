@@ -1,21 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
-import '../../services/user.dart';
 import '../../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../services/auth.dart';
 
-import 'new_complaint.dart';
-import 'package:firebase_core/firebase_core.dart';
-
-class ViewComplain extends StatefulWidget {
+class AllComplaints extends StatefulWidget {
   @override
-  _ViewComplainState createState() => _ViewComplainState();
+  _AllComplaintsState createState() => _AllComplaintsState();
 }
 
-// ignore: camel_case_types
-class _ViewComplainState extends State<ViewComplain> {
+class _AllComplaintsState extends State<AllComplaints> {
   // DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
 
@@ -23,8 +16,11 @@ class _ViewComplainState extends State<ViewComplain> {
   //     FirebaseFirestore.instance.collection('complaint');
   String uid = auth.currentUser.uid.toString();
 
-  CollectionReference get collectionReference =>
-      users.doc(uid).collection('complaint');
+  get collectionReference => admin;
+  var data = admin.doc().get();
+  //
+  // CollectionReference get collectionReference =>
+  //     users.doc().collection('complaint');
   Future getPosts() async {
     QuerySnapshot qn = await collectionReference.get();
     return qn.docs;
@@ -55,7 +51,7 @@ class _ViewComplainState extends State<ViewComplain> {
     return Scaffold(
       backgroundColor: Color(0XFF1E1D21),
       appBar: AppBar(
-        title: Text('Your Complaints'),
+        title: Text('All Complaints'),
         centerTitle: true,
         backgroundColor: Color(0XFFB577FF),
       ),

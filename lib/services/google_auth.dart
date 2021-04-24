@@ -7,8 +7,10 @@ import '../screens/user/homepage.dart';
 
 GoogleSignIn googleSignIn = GoogleSignIn();
 final FirebaseAuth auth = FirebaseAuth.instance;
-CollectionReference users = FirebaseFirestore.instance.collection('users');
+CollectionReference admin = FirebaseFirestore.instance.collection('Admin');
 
+CollectionReference users = FirebaseFirestore.instance.collection('users');
+var data = users.doc().get();
 // ignore: missing_return
 Future<bool> signInWithGoogle(BuildContext context) async {
   try {

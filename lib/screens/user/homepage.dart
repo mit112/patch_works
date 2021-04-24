@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'camera_screen.dart';
-import 'new_complaint.dart';
 import '../../constants/constants.dart';
 import 'package:patch_works/services/auth.dart';
 import 'view_complain.dart';
@@ -52,11 +51,16 @@ class _HomepageState extends State<Homepage> {
 
                         // Get a specific camera from the list of available cameras.
                         final firstCamera = cameras.first;
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return CameraScreen(camera: firstCamera,);
-                          },
-                        ),);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return CameraScreen(
+                                camera: firstCamera,
+                              );
+                            },
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -84,7 +88,7 @@ class _HomepageState extends State<Homepage> {
                       colour: Color(0XFFB577FF),
                       onPressed: () {
                         // context.read<AuthService>().signOut();
-                        // logout();
+                        logout();
                       },
                     ),
                   ),
