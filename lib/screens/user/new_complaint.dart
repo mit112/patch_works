@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:patch_works/screens/user/homepage.dart';
 import 'package:patch_works/services/location.dart';
 
 import '../../services/google_auth.dart';
@@ -57,11 +58,11 @@ class _NewComplaintState extends State<NewComplaint> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFF1E1D21),
+      backgroundColor: kWhite,
       appBar: AppBar(
         title: Text('New Complaint'),
         centerTitle: true,
-        backgroundColor: Color(0XFFB577FF),
+        backgroundColor: kDarkBlue,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -92,8 +93,8 @@ class _NewComplaintState extends State<NewComplaint> {
                     child: TextField(
                       // controller: name,
                       style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'PoiretOne',
+                        color: kDarkBlue,
+                        fontFamily: kFont,
                       ),
                       // obscureText: true,
                       autofocus: false,
@@ -105,10 +106,9 @@ class _NewComplaintState extends State<NewComplaint> {
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Your Name',
                         hintStyle: TextStyle(
-                          fontFamily: 'PoiretOne',
+                          fontFamily: kFont,
 
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
+                          color: kDarkBlue,
                           // fontFamily: kFont,
                         ),
                       ),
@@ -135,8 +135,8 @@ class _NewComplaintState extends State<NewComplaint> {
                     child: TextField(
                       // controller: number,
                       style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'PoiretOne',
+                        color: kDarkBlue,
+                        fontFamily: kFont,
                       ),
                       // obscureText: true,
 
@@ -150,10 +150,10 @@ class _NewComplaintState extends State<NewComplaint> {
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Your Phone No.',
                         hintStyle: TextStyle(
-                          fontFamily: 'PoiretOne',
+                          fontFamily: kFont,
 
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
+                          color: kDarkBlue,
+                          // fontWeight: FontWeight.w600,
                           // fontFamily: kFont,
                         ),
                       ),
@@ -183,8 +183,8 @@ class _NewComplaintState extends State<NewComplaint> {
                       // controller: landmark,
 
                       style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'PoiretOne',
+                        color: kDarkBlue,
+                        fontFamily: kFont,
                       ),
                       // obscureText: true,
                       autofocus: false,
@@ -197,9 +197,9 @@ class _NewComplaintState extends State<NewComplaint> {
                       decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter Nearby Landmarks',
                         hintStyle: TextStyle(
-                          fontFamily: 'PoiretOne',
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
+                          fontFamily: kFont,
+                          color: kDarkBlue,
+                          // fontWeight: FontWeight.w600,
                           // fontFamily: kFont,
                         ),
                       ),
@@ -228,8 +228,8 @@ class _NewComplaintState extends State<NewComplaint> {
                     // keyboardType: TextInputType.multiline,
                     // maxLines: null,
                     style: TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'PoiretOne',
+                      color: kDarkBlue,
+                      fontFamily: kFont,
                     ),
                     // obscureText: true,
                     autofocus: false,
@@ -242,10 +242,10 @@ class _NewComplaintState extends State<NewComplaint> {
                     decoration: kTextFieldDecoration.copyWith(
                       hintText: 'Enter Other Comments',
                       hintStyle: TextStyle(
-                        fontFamily: 'PoiretOne',
+                        fontFamily: kFont,
 
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
+                        color: kDarkBlue,
+                        // fontWeight: FontWeight.w600,
                         // fontFamily: kFont,
                       ),
                     ),
@@ -280,14 +280,13 @@ class _NewComplaintState extends State<NewComplaint> {
                   print(value.id);
                 });
 
-                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context) {
+                    return Homepage();
+                  },
+                ),);
               },
               title: 'Submit',
-            ),
-            RoundedButton(
-              title: 'Take Picture',
-              colour: Color(0XFFB577FF),
-              onPressed: () async {},
             ),
           ],
         ),

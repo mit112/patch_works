@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/sign_in.dart';
 import 'services/auth.dart';
 import 'package:provider/provider.dart';
+import 'screens/user/homepage.dart';
+import 'constants/constants.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Patch Works',
         theme: ThemeData(
-          accentColor: Colors.white,
+          accentColor: kDarkBlue,
           appBarTheme: AppBarTheme(
             brightness: Brightness.dark,
           ),

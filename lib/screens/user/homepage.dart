@@ -14,9 +14,9 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFF1E1D21),
+      backgroundColor: kWhite,
       appBar: AppBar(
-        backgroundColor: Color(0XFFB577FF),
+        backgroundColor: kDarkBlue,
         centerTitle: true,
         title: Text('Patch Works'),
       ),
@@ -34,7 +34,7 @@ class _HomepageState extends State<Homepage> {
                     fit: BoxFit.fitWidth,
                     child: RoundedButton(
                       title: 'Register New Complaint',
-                      colour: Color(0XFFB577FF),
+                      colour: kDarkBlue,
                       onPressed: () async {
                         // Navigator.push(
                         //   context,
@@ -68,7 +68,7 @@ class _HomepageState extends State<Homepage> {
                     fit: BoxFit.fitWidth,
                     child: RoundedButton(
                       title: 'View Registered Complaint',
-                      colour: Color(0XFFB577FF),
+                      colour: kDarkBlue,
                       onPressed: () {
                         Navigator.push(
                           context,
@@ -85,7 +85,7 @@ class _HomepageState extends State<Homepage> {
                     fit: BoxFit.fitWidth,
                     child: RoundedButton(
                       title: 'Log Out',
-                      colour: Color(0XFFB577FF),
+                      colour: kDarkBlue,
                       onPressed: () {
                         // context.read<AuthService>().signOut();
                         logout();

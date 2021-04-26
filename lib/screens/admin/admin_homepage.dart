@@ -14,9 +14,9 @@ class _AdminHomepageState extends State<AdminHomepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFF1E1D21),
+      backgroundColor: kWhite,
       appBar: AppBar(
-        backgroundColor: Color(0XFFB577FF),
+        backgroundColor: kDarkBlue,
         centerTitle: true,
         title: Text('Patch Works'),
       ),

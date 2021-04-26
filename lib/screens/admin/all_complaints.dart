@@ -49,11 +49,11 @@ class _AllComplaintsState extends State<AllComplaints> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFF1E1D21),
+      backgroundColor: kWhite,
       appBar: AppBar(
         title: Text('All Complaints'),
         centerTitle: true,
-        backgroundColor: Color(0XFFB577FF),
+        backgroundColor: kDarkBlue,
       ),
       body: FutureBuilder(
         future: getPosts(),
@@ -93,7 +93,7 @@ class _DetailPageState extends State<DetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
+      backgroundColor: kWhite,
       appBar: AppBar(
         title: Text(
           widget.post.data()['landmark'],

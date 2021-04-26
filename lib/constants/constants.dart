@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-const kFont = 'PoiretOne';
+const kDarkBlue = Color(0xFF11A0D9);
+const kOrange = Color(0xFFFF8726);
+const kYellow = Color(0xFFFFCA3E);
+const kLightBlue = Color(0xFF42BBFF);
+const kWhite = Color(0xFAFFFFFF);
+const kFont = 'Roboto';
 
 class RoundedButton extends StatelessWidget {
   RoundedButton({this.colour, this.title, @required this.onPressed});
@@ -14,7 +19,7 @@ class RoundedButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
         elevation: 5.0,
-        color: colour,
+        color: kDarkBlue,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
           onPressed: onPressed,
@@ -24,10 +29,10 @@ class RoundedButton extends StatelessWidget {
             title,
             style: TextStyle(
               letterSpacing: 1.6,
-              color: Colors.white,
-              fontSize: 28.0,
-              fontWeight: FontWeight.w600,
-              fontFamily: 'PoiretOne',
+              color: kWhite,
+              fontSize: 20.0,
+              //fontWeight: FontWeight.w600,
+              fontFamily: kFont,
             ),
           ),
         ),
@@ -40,29 +45,29 @@ const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value.',
   contentPadding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
   border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    borderRadius: BorderRadius.all(Radius.circular(10.0)),
   ),
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(
-      color: Colors.purpleAccent,
+      color: kDarkBlue,
       width: 1.0,
     ),
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    borderRadius: BorderRadius.all(Radius.circular(25.0)),
   ),
   focusedBorder: OutlineInputBorder(
     borderSide: BorderSide(
-      color: Colors.purpleAccent,
+      color: kLightBlue,
       width: 2.0,
     ),
-    borderRadius: BorderRadius.all(Radius.circular(32.0)),
+    borderRadius: BorderRadius.all(Radius.circular(25.0)),
   ),
 );
 
 const kFieldStyle = TextStyle(
-  fontFamily: 'PoiretOne',
-  color: Colors.white,
-  fontWeight: FontWeight.w600,
-  fontSize: 25.0,
+  fontFamily: kFont,
+  color: kDarkBlue,
+  //fontWeight: FontWeight.w600,
+  fontSize: 20.0,
 );
 
 class RoundedButtonlogin extends StatelessWidget {
@@ -80,7 +85,7 @@ class RoundedButtonlogin extends StatelessWidget {
       ),
       child: Material(
         elevation: 5.0,
-        color: colour,
+        color: kDarkBlue,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
           onPressed: onPressed,
@@ -89,10 +94,10 @@ class RoundedButtonlogin extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              fontFamily: 'PoiretOne',
-              fontSize: 22.0,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
+              fontFamily: kFont,
+              fontSize: 20.0,
+              //fontWeight: FontWeight.w600,
+              color: kWhite,
             ),
           ),
         ),

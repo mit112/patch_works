@@ -3,9 +3,8 @@ import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:patch_works/constants/constants.dart';
 import 'new_complaint.dart';
-// import 'file:///C:/Kashish/Projects/Flutter/patch_works/lib/screens/user/new_complaint.dart';
-
 import 'display_picture_screen.dart';
 
 class CameraScreen extends StatefulWidget {
@@ -52,7 +51,7 @@ class _CameraScreenState extends State<CameraScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0XFFB577FF),
+        backgroundColor: kDarkBlue,
         centerTitle: true,
         title: Text('Take Pothole\'s Picture'),
       ),
