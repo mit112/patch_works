@@ -2,7 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:flutter/material.dart';
 
 //import 'package:provider/provider.dart';
-
+// class Users{
+//   final String uid;
+//   final String userType;
+//   Users({this.uid, this.userType});
+//
+//
+//
+//
+//
+//
+// }
+//TODO user stuff admin stuff yaha dekh bsdk
 class Users {
   final String name;
   final String uid;

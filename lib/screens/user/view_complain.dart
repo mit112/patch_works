@@ -25,6 +25,7 @@ class _ViewComplainState extends State<ViewComplain> {
 
   CollectionReference get collectionReference =>
       users.doc(uid).collection('complaint');
+
   Future getPosts() async {
     QuerySnapshot qn = await collectionReference.get();
     return qn.docs;
@@ -57,7 +58,7 @@ class _ViewComplainState extends State<ViewComplain> {
       appBar: AppBar(
         title: Text('Your Complaints'),
         centerTitle: true,
-        backgroundColor: kDarkBlue,
+        backgroundColor: Colors.black,
       ),
       body: FutureBuilder(
         future: getPosts(),
@@ -71,12 +72,52 @@ class _ViewComplainState extends State<ViewComplain> {
                 // ignore: missing_return
                 itemCount: snapshot.data.length,
                 itemBuilder: (_, index) {
-                  return ListTile(
-                    title: Text(
-                      snapshot.data[index].data()["landmark"],
-                      style: kFieldStyle,
-                    ),
-                    onTap: () => navigateToDetail(snapshot.data[index]),
+                  return Column(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Card(
+                        color: kGreyBlue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                          width: double.infinity,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListTile(
+                                title: Text(
+                                  snapshot.data[index].data()["landmark"],
+                                  style: TextStyle(
+                                    fontFamily: kFont,
+                                    fontSize: 20.0,
+                                    letterSpacing: 1.5,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onTap: () =>
+                                    navigateToDetail(snapshot.data[index]),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      // ListTile(
+                      //   title: Text(
+                      //     snapshot.data[index].data()["landmark"],
+                      //     style: TextStyle(
+                      //       fontFamily: kFont,
+                      //       fontSize: 20.0,
+                      //       fontWeight: FontWeight.bold,
+                      //       color: Colors.white,
+                      //     ),
+                      //   ),
+                      //   onTap: () => navigateToDetail(snapshot.data[index]),
+                      // ),
+                    ],
                   );
                 });
           }
@@ -99,6 +140,8 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       backgroundColor: kWhite,
       appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.black,
         title: Text(
           widget.post.data()['landmark'],
           style: TextStyle(
@@ -111,24 +154,97 @@ class _DetailPageState extends State<DetailPage> {
       ),
       body: Container(
         child: Padding(
-          padding: EdgeInsets.only(left: 10.0),
+          padding: EdgeInsets.only(left: 10.0, top: 8.0),
           child: Column(
             children: [
-              Text(
-                widget.post.data()['landmark'],
-                style: kFieldStyle,
-              ),
-              Text(
-                widget.post.data()['name'],
-                style: kFieldStyle,
-              ),
-              Text(
-                widget.post.data()['comments'],
-                style: kFieldStyle,
-              ),
-              Text(
-                widget.post.data()['Phone'],
-                style: kFieldStyle,
+              Card(
+                color: kGreyBlue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Text(
+                          'Complaint',
+                          style: TextStyle(
+                            fontFamily: kFont,
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Landmark:- ',
+                            style: kMyStyle,
+                          ),
+                          Text(
+                            widget.post.data()['landmark'],
+                            style: kMyStyle,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Name:- ',
+                            style: kMyStyle,
+                          ),
+                          Text(
+                            widget.post.data()['name'],
+                            style: kMyStyle,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Phone:- ',
+                            style: kMyStyle,
+                          ),
+                          Text(
+                            widget.post.data()['Phone'],
+                            style: kMyStyle,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Comments:- ',
+                            style: kMyStyle,
+                          ),
+                          Text(
+                            widget.post.data()['comments'],
+                            style: kMyStyle,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
@@ -137,3 +253,19 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 }
+// Text(
+// widget.post.data()['landmark'],
+// style: kFieldStyle,
+// ),
+// Text(
+// widget.post.data()['name'],
+// style: kFieldStyle,
+// ),
+// Text(
+// widget.post.data()['comments'],
+// style: kFieldStyle,
+// ),
+// Text(
+// widget.post.data()['Phone'],
+// style: kFieldStyle,
+// ),

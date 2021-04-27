@@ -31,13 +31,12 @@ class AuthService {
   }
 }
 
+//ToDO this is the other code related to the model users stuff
 class DatabaseService {
   List<Users> _userListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return Users(
-        name: doc.data()['name'] ?? '',
-        landmark: doc.data()['landmark'] ?? '',
-        Phone: doc.data()['Phone'] ?? '',
+        uid: doc.data()['uid'] ?? '',
       );
     }).toList();
   }

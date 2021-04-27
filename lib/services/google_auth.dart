@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:patch_works/screens/admin/admin_homepage.dart';
 import '../screens/user/homepage.dart';
 
 GoogleSignIn googleSignIn = GoogleSignIn();
@@ -11,6 +12,15 @@ CollectionReference admin = FirebaseFirestore.instance.collection('Admin');
 
 CollectionReference users = FirebaseFirestore.instance.collection('users');
 var data = users.doc().get();
+
+String checkIfAdmin(DocumentSnapshot doc) {
+  print('---' * 80);
+  print(doc.data()['userType']);
+  print('---' * 80);
+
+  return doc.data()['userType'];
+}
+
 // ignore: missing_return
 Future<bool> signInWithGoogle(BuildContext context) async {
   try {
@@ -32,16 +42,40 @@ Future<bool> signInWithGoogle(BuildContext context) async {
         'photoUrl': googleSignInAccount.photoUrl,
         'email': googleSignInAccount.email,
         'id': googleSignInAccount.id,
+        'userType': 'admin',
       };
+      String userType;
       users.doc(user.uid).get().then((doc) => {
             if (doc.exists)
               {
                 doc.reference.update(userData),
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return Homepage();
-                  },
-                ))
+                userType = checkIfAdmin(doc),
+                print('---' * 80),
+                print(doc.data()['userType']),
+                print('---' * 80),
+                if (userType == 'admin')
+                  {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return AdminHomepage();
+                        },
+                      ),
+                    ),
+                  }
+                else
+                  {
+                    // doc.reference.update(userData),
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return AdminHomepage();
+                        },
+                      ),
+                    ),
+                  }
               }
             else
               {
@@ -50,7 +84,7 @@ Future<bool> signInWithGoogle(BuildContext context) async {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return Homepage();
+                      return AdminHomepage();
                     },
                   ),
                 )

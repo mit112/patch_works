@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'screens/admin/admin_homepage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'services/google_auth.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'screens/sign_in.dart';
 import 'services/auth.dart';
@@ -41,13 +44,22 @@ class MyApp extends StatelessWidget {
   }
 }
 
+String checkIfAdmin(DocumentSnapshot doc) {
+  String userType;
+  print('---' * 80);
+  print(doc.data()['userType']);
+  print('---' * 80);
+  userType = doc.data()['userType'];
+  return doc.data()['userType'];
+}
+
 class AuthenticationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
 
     if (firebaseUser != null) {
-      return AdminHomepage();
+      return Homepage();
     }
     return Authenticate();
   }
