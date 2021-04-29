@@ -7,6 +7,7 @@ import 'package:patch_works/services/location.dart';
 import '../../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../constants/constants.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class NewComplaint extends StatefulWidget {
   final String imagePath;
@@ -48,6 +49,15 @@ class _NewComplaintState extends State<NewComplaint> {
   //   return await collectionReference.getDocuments();
   // }
 
+  Future<void> uploadFile(String filePath) async {
+    File file = File(filePath);
+
+    try {
+      await firebase_storage.FirebaseStorage.instance.ref('images/$filePath').putFile(file);
+    }  catch (e) {
+      print(e);
+    }
+  }
   @override
   void initState() {
     super.initState();
@@ -265,6 +275,7 @@ class _NewComplaintState extends State<NewComplaint> {
                   'comments': comments,
                   'latitude': location.latitude,
                   'longitude': location.longitude,
+                  'imagePath': widget.imagePath,
                 }).then((value) {
                   print(value.id);
                 });
@@ -275,9 +286,12 @@ class _NewComplaintState extends State<NewComplaint> {
                   'comments': comments,
                   'latitude': location.latitude,
                   'longitude': location.longitude,
+                  'imagePath': widget.imagePath,
                 }).then((value) {
                   print(value.id);
                 });
+
+                uploadFile(widget.imagePath);
 
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {
