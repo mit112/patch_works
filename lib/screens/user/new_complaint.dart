@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:patch_works/screens/user/homepage.dart';
@@ -8,6 +9,8 @@ import '../../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../constants/constants.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
 
 class NewComplaint extends StatefulWidget {
   final String imagePath;
@@ -49,11 +52,21 @@ class _NewComplaintState extends State<NewComplaint> {
   //   return await collectionReference.getDocuments();
   // }
 
-  Future<void> uploadFile(String filePath) async {
+
+  Random _rnd = Random();
+
+  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+      length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+
+
+  Future<String> uploadFile(String filePath) async {
     File file = File(filePath);
 
     try {
-      await firebase_storage.FirebaseStorage.instance.ref('images/$filePath').putFile(file);
+      String imageName = getRandomString(15);
+      print(file);
+      await firebase_storage.FirebaseStorage.instance.ref('images/$imageName').putFile(file);
+      return imageName;
     }  catch (e) {
       print(e);
     }
@@ -268,6 +281,9 @@ class _NewComplaintState extends State<NewComplaint> {
             RoundedButtonlogin(
               onPressed: () async {
                 // await saveData(name, number, landmark);
+
+                String imagePath = await uploadFile(widget.imagePath);
+
                 await collectionReference.add({
                   'name': name,
                   'Phone': number,
@@ -275,7 +291,7 @@ class _NewComplaintState extends State<NewComplaint> {
                   'comments': comments,
                   'latitude': location.latitude,
                   'longitude': location.longitude,
-                  'imagePath': widget.imagePath,
+                  'imagePath': imagePath,
                 }).then((value) {
                   print(value.id);
                 });
@@ -286,12 +302,12 @@ class _NewComplaintState extends State<NewComplaint> {
                   'comments': comments,
                   'latitude': location.latitude,
                   'longitude': location.longitude,
-                  'imagePath': widget.imagePath,
+                  'imagePath': imagePath,
                 }).then((value) {
                   print(value.id);
                 });
 
-                uploadFile(widget.imagePath);
+
 
                 Navigator.push(context, MaterialPageRoute(
                   builder: (context) {

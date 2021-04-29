@@ -55,17 +55,19 @@ class _ViewComplainState extends State<ViewComplain> {
   get index => null;
   // final DatabaseService db = DatabaseService();
 
-  Future<String> downloadFileExample(String imagePath) async {
+  Future<String> downloadFileExample(String imageName) async {
     Directory appDocDir = await getApplicationDocumentsDirectory();
-    File downloadToFile = File('${appDocDir.path}/download-image.png');
-
+    String filePath = '${appDocDir.path}/$imageName.png';
+    File downloadToFile = File(filePath);
+    print(imageName);
     try {
       await firebase_storage.FirebaseStorage.instance
-          .ref('images/$imagePath')
+          .ref('images/$imageName')
           .writeToFile(downloadToFile);
-      return '${appDocDir.path}/download-image.png';
+      return filePath;
     } catch (e) {
       // e.g, e.code == 'canceled'
+      print(e);
     }
   }
 
@@ -117,9 +119,15 @@ class _ViewComplainState extends State<ViewComplain> {
                                   ),
                                 ),
                                 onTap: () async {
+                                  print(snapshot.data[index].data()['imagePath']);
                                   String imagePath = await downloadFileExample(
                                       snapshot.data[index].data()['imagePath']);
-                                  navigateToDetail(snapshot.data[index], imagePath);
+                                  if(imagePath != null) {
+                                    navigateToDetail(
+                                        snapshot.data[index], imagePath);
+                                  } else {
+                                    print('Error');
+                                  }
                                 }
                               ),
                             ],
