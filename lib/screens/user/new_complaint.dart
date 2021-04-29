@@ -50,7 +50,6 @@ class _NewComplaintState extends State<NewComplaint> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     location.getCurrentLocation();
   }

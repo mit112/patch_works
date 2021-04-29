@@ -70,6 +70,13 @@ const kFieldStyle = TextStyle(
   fontSize: 20.0,
 );
 
+const kMyStyle = TextStyle(
+  fontFamily: kFont,
+  color: Colors.white,
+  //fontWeight: FontWeight.w600,
+  fontSize: 25.0,
+);
+
 class RoundedButtonlogin extends StatelessWidget {
   RoundedButtonlogin({this.colour, this.title, @required this.onPressed});
   final Color colour;

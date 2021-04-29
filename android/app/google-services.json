@@ -51,11 +51,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "570181999385-2r39thipldd5javruc5nurjlg9urgmtf.apps.googleusercontent.com",
+          "client_id": "570181999385-duh8o7p9qcqsc8bcmg99vctdnndtnoht.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.patchworks",
-            "certificate_hash": "e7d56245eae91af15e2e9c2f0fa700443d53caca"
+            "certificate_hash": "7f6a682b19d2374f3d70c34702f9700942dcec38"
           }
         },
         {

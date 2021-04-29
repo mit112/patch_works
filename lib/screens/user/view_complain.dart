@@ -77,7 +77,7 @@ class _ViewComplainState extends State<ViewComplain> {
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Card(
-                        color: kGreyBlue,
+                        color: kDarkBlue,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
@@ -158,7 +158,7 @@ class _DetailPageState extends State<DetailPage> {
           child: Column(
             children: [
               Card(
-                color: kGreyBlue,
+                color: kDarkBlue,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),

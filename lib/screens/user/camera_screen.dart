@@ -25,7 +25,6 @@ class _CameraScreenState extends State<CameraScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // To display the current output from the Camera,
     // create a CameraController.
