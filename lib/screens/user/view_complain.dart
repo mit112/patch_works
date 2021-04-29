@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
@@ -5,7 +7,8 @@ import '../../services/user.dart';
 import '../../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../services/auth.dart';
-
+import 'package:path_provider/path_provider.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'new_complaint.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -31,12 +34,13 @@ class _ViewComplainState extends State<ViewComplain> {
     return qn.docs;
   }
 
-  navigateToDetail(DocumentSnapshot post) {
+  navigateToDetail(DocumentSnapshot post, String imagePath) {
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => DetailPage(
                   post: post,
+                  imagePath: imagePath,
                 )));
   }
 
@@ -50,6 +54,20 @@ class _ViewComplainState extends State<ViewComplain> {
 
   get index => null;
   // final DatabaseService db = DatabaseService();
+
+  Future<String> downloadFileExample(String imagePath) async {
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    File downloadToFile = File('${appDocDir.path}/download-image.png');
+
+    try {
+      await firebase_storage.FirebaseStorage.instance
+          .ref('images/$imagePath')
+          .writeToFile(downloadToFile);
+      return '${appDocDir.path}/download-image.png';
+    } catch (e) {
+      // e.g, e.code == 'canceled'
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,8 +116,11 @@ class _ViewComplainState extends State<ViewComplain> {
                                     color: Colors.white,
                                   ),
                                 ),
-                                onTap: () =>
-                                    navigateToDetail(snapshot.data[index]),
+                                onTap: () async {
+                                  String imagePath = await downloadFileExample(
+                                      snapshot.data[index].data()['imagePath']);
+                                  navigateToDetail(snapshot.data[index], imagePath);
+                                }
                               ),
                             ],
                           ),
@@ -129,7 +150,8 @@ class _ViewComplainState extends State<ViewComplain> {
 
 class DetailPage extends StatefulWidget {
   final DocumentSnapshot post;
-  DetailPage({this.post});
+  final String imagePath;
+  DetailPage({this.post, this.imagePath});
   @override
   _DetailPageState createState() => _DetailPageState();
 }
@@ -241,6 +263,11 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       SizedBox(
                         height: 20.0,
+                      ),
+                      Container(
+                        height: 150,
+                        width: 150,
+                        child: Image.file(File(widget.imagePath)),
                       ),
                     ],
                   ),
