@@ -53,13 +53,54 @@ String checkIfAdmin(DocumentSnapshot doc) {
   return doc.data()['userType'];
 }
 
-class AuthenticationWrapper extends StatelessWidget {
+class AuthenticationWrapper extends StatefulWidget {
+  @override
+  _AuthenticationWrapperState createState() => _AuthenticationWrapperState();
+}
+
+class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
+
+  Future<String> checkIfAdmin() async {
+    final firebaseUser = context.watch<User>();
+    if (firebaseUser != null) {
+      CollectionReference users = FirebaseFirestore.instance.collection(
+          'users');
+      String userType;
+      users.doc(firebaseUser.uid).get().then((doc) =>
+      userType = doc.data()['userType']);
+      print('-' * 80);
+      print(userType);
+      print('-' * 80);
+      if (userType == 'admin') {
+        return 'admin';
+      } else {
+        return 'user';
+      }
+    }
+    return null;
+  }
+
+  String _userType;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    checkIfAdmin().then((value) => _userType = value);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final firebaseUser = context.watch<User>();
 
-    if (firebaseUser != null) {
-      return Homepage();
+    if (_userType != null) {
+      print('-' * 80);
+      print(_userType);
+      print('-' * 80);
+      if(_userType == 'admin') {
+        return AdminHomepage();
+      } else {
+        return Homepage();
+      }
     }
     return Authenticate();
   }

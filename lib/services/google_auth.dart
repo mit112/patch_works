@@ -14,9 +14,6 @@ CollectionReference users = FirebaseFirestore.instance.collection('users');
 var data = users.doc().get();
 
 String checkIfAdmin(DocumentSnapshot doc) {
-  print('---' * 80);
-  print(doc.data()['userType']);
-  print('---' * 80);
 
   return doc.data()['userType'];
 }
@@ -42,17 +39,16 @@ Future<bool> signInWithGoogle(BuildContext context) async {
         'photoUrl': googleSignInAccount.photoUrl,
         'email': googleSignInAccount.email,
         'id': googleSignInAccount.id,
-        'userType': 'admin',
+        'userType': 'user'
       };
       String userType;
       users.doc(user.uid).get().then((doc) => {
             if (doc.exists)
               {
-                doc.reference.update(userData),
+                // doc.reference.update(userData),
                 userType = checkIfAdmin(doc),
-                print('---' * 80),
-                print(doc.data()['userType']),
-                print('---' * 80),
+
+
                 if (userType == 'admin')
                   {
                     Navigator.push(
@@ -71,7 +67,7 @@ Future<bool> signInWithGoogle(BuildContext context) async {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return AdminHomepage();
+                          return Homepage();
                         },
                       ),
                     ),
@@ -84,7 +80,7 @@ Future<bool> signInWithGoogle(BuildContext context) async {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return AdminHomepage();
+                      return Homepage();
                     },
                   ),
                 )

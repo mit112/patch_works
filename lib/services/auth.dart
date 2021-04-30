@@ -80,7 +80,7 @@ saveData(
   }, SetOptions(merge: true));
 }
 
-void logout() async {
+Future<bool> logout() async {
   await googleSignIn.disconnect();
   FirebaseAuth.instance.signOut();
 }

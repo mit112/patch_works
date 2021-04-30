@@ -86,9 +86,15 @@ class _HomepageState extends State<Homepage> {
                     child: RoundedButton(
                       title: 'Log Out',
                       colour: kDarkBlue,
-                      onPressed: () {
+                      onPressed: () async {
                         // context.read<AuthService>().signOut();
-                        logout();
+
+                        Navigator.pop(context);
+                        bool value = await logout();
+                        print(value);
+                        if(value) {
+
+                        }
                       },
                     ),
                   ),

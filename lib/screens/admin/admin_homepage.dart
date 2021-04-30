@@ -1,9 +1,14 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:patch_works/screens/admin/all_complaints.dart';
+import 'package:patch_works/services/google_auth.dart';
 import '../user/camera_screen.dart';
 import '../../constants/constants.dart';
 import 'package:camera/camera.dart';
 import 'all_complaints.dart';
+import '../../services/auth.dart';
 
 class AdminHomepage extends StatefulWidget {
   @override
@@ -86,9 +91,16 @@ class _AdminHomepageState extends State<AdminHomepage> {
                     child: RoundedButton(
                       title: 'Log Out',
                       colour: Color(0XFFB577FF),
-                      onPressed: () {
+                      onPressed: () async {
+                        await googleSignIn.disconnect();
+                        FirebaseAuth.instance.signOut();
+                        Navigator.pop(context);
                         // context.read<AuthService>().signOut();
-                        // logout();
+                        bool value = await logout();
+                        print(value);
+                        if(value) {
+                          Navigator.pop(context);
+                        }
                       },
                     ),
                   ),

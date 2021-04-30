@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
 import '../../services/google_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class AllComplaints extends StatefulWidget {
   @override
@@ -26,13 +30,30 @@ class _AllComplaintsState extends State<AllComplaints> {
     return qn.docs;
   }
 
-  navigateToDetail(DocumentSnapshot post) {
+  navigateToDetail(DocumentSnapshot post, String imagePath) {
     Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => DetailPage(
                   post: post,
+                  imagePath: imagePath,
                 )));
+  }
+
+  Future<String> downloadFileExample(String imageName) async {
+    Directory appDocDir = await getApplicationDocumentsDirectory();
+    String filePath = '${appDocDir.path}/$imageName.png';
+    File downloadToFile = File(filePath);
+    print(imageName);
+    try {
+      await firebase_storage.FirebaseStorage.instance
+          .ref('images/$imageName')
+          .writeToFile(downloadToFile);
+      return filePath;
+    } catch (e) {
+      // e.g, e.code == 'canceled'
+      print(e);
+    }
   }
 
   // .doc(FirebaseAuth.instance.currentUser.uid)
@@ -72,7 +93,17 @@ class _AllComplaintsState extends State<AllComplaints> {
                       snapshot.data[index].data()["landmark"],
                       style: kFieldStyle,
                     ),
-                    onTap: () => navigateToDetail(snapshot.data[index]),
+                    onTap: () async {
+                      print(snapshot.data[index].data()['imagePath']);
+                      String imagePath = await downloadFileExample(
+                          snapshot.data[index].data()['imagePath']);
+                      if(imagePath != null) {
+                        navigateToDetail(
+                            snapshot.data[index], imagePath);
+                      } else {
+                        print('Error');
+                      }
+                    }
                   );
                 });
           }
@@ -83,8 +114,12 @@ class _AllComplaintsState extends State<AllComplaints> {
 }
 
 class DetailPage extends StatefulWidget {
+
   final DocumentSnapshot post;
-  DetailPage({this.post});
+  final String imagePath;
+
+  DetailPage({this.post, this.imagePath});
+
   @override
   _DetailPageState createState() => _DetailPageState();
 }
@@ -105,21 +140,99 @@ class _DetailPageState extends State<DetailPage> {
           padding: EdgeInsets.only(left: 10.0),
           child: Column(
             children: [
-              Text(
-                widget.post.data()['landmark'],
-                style: kFieldStyle,
-              ),
-              Text(
-                widget.post.data()['name'],
-                style: kFieldStyle,
-              ),
-              Text(
-                widget.post.data()['comments'],
-                style: kFieldStyle,
-              ),
-              Text(
-                widget.post.data()['Phone'],
-                style: kFieldStyle,
+              Card(
+                color: kDarkBlue,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Text(
+                          'Complaint',
+                          style: TextStyle(
+                            fontFamily: kFont,
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Landmark:- ',
+                            style: kMyStyle,
+                          ),
+                          Text(
+                            widget.post.data()['landmark'],
+                            style: kMyStyle,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Name:- ',
+                            style: kMyStyle,
+                          ),
+                          Text(
+                            widget.post.data()['name'],
+                            style: kMyStyle,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Phone:- ',
+                            style: kMyStyle,
+                          ),
+                          Text(
+                            widget.post.data()['Phone'],
+                            style: kMyStyle,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            'Comments:- ',
+                            style: kMyStyle,
+                          ),
+                          Text(
+                            widget.post.data()['comments'],
+                            style: kMyStyle,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Container(
+                        height: 150,
+                        width: 150,
+                        child: Image.file(File(widget.imagePath)),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
