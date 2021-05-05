@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patch_works/screens/sign_in.dart';
 import 'camera_screen.dart';
 import '../../constants/constants.dart';
 import 'package:patch_works/services/auth.dart';
@@ -89,7 +90,9 @@ class _HomepageState extends State<Homepage> {
                       onPressed: () async {
                         // context.read<AuthService>().signOut();
 
-                        Navigator.pop(context);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                          return Authenticate();
+                        }));
                         bool value = await logout();
                         print(value);
                         if(value) {

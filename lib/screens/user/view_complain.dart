@@ -212,6 +212,14 @@ class _DetailPageState extends State<DetailPage> {
                       SizedBox(
                         height: 10.0,
                       ),
+                      Container(
+                        height: 150,
+                        width: 150,
+                        child: Image.file(File(widget.imagePath)),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Row(
                         children: [
                           Text(
@@ -271,11 +279,6 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       SizedBox(
                         height: 20.0,
-                      ),
-                      Container(
-                        height: 150,
-                        width: 150,
-                        child: Image.file(File(widget.imagePath)),
                       ),
                     ],
                   ),
