@@ -53,7 +53,7 @@ Future<Widget> signInWithGoogle(BuildContext context) async {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return Homepage();
+                          return AdminHomepage();
                         },
                       ),
                     ),

@@ -35,40 +35,40 @@ class _AdminHomepageState extends State<AdminHomepage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  FittedBox(
-                    fit: BoxFit.fitWidth,
-                    child: RoundedButton(
-                      title: 'View New Complaints',
-                      colour: Color(0XFFB577FF),
-                      onPressed: () async {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) {
-                        //       return NewComplaint();
-                        //     },
-                        //   ),
-                        // );
-                        WidgetsFlutterBinding.ensureInitialized();
-
-                        // Obtain a list of the available cameras on the device.
-                        final cameras = await availableCameras();
-
-                        // Get a specific camera from the list of available cameras.
-                        final firstCamera = cameras.first;
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return CameraScreen(
-                                camera: firstCamera,
-                              );
-                            },
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+                  // FittedBox(
+                  //   fit: BoxFit.fitWidth,
+                  //   child: RoundedButton(
+                  //     title: 'View New Complaints',
+                  //     colour: Color(0XFFB577FF),
+                  //     onPressed: () async {
+                  //       // Navigator.push(
+                  //       //   context,
+                  //       //   MaterialPageRoute(
+                  //       //     builder: (context) {
+                  //       //       return NewComplaint();
+                  //       //     },
+                  //       //   ),
+                  //       // );
+                  //       WidgetsFlutterBinding.ensureInitialized();
+                  //
+                  //       // Obtain a list of the available cameras on the device.
+                  //       final cameras = await availableCameras();
+                  //
+                  //       // Get a specific camera from the list of available cameras.
+                  //       final firstCamera = cameras.first;
+                  //       Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //           builder: (context) {
+                  //             return CameraScreen(
+                  //               camera: firstCamera,
+                  //             );
+                  //           },
+                  //         ),
+                  //       );
+                  //     },
+                  //   ),
+                  // ),
                   FittedBox(
                     fit: BoxFit.fitWidth,
                     child: RoundedButton(

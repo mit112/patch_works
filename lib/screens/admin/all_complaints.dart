@@ -236,17 +236,17 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                 ),
               ),
-              Text(
-                'Assigned to:- ',
-                style: kFieldStyle,
-              ),
-              TextField(
-                onSubmitted: (String value) {
-                  setState(() {
-                    value = assigned;
-                  });
-                },
-              ),
+              // Text(
+              //   'Assigned to:- ',
+              //   style: kFieldStyle,
+              // ),
+              // TextField(
+              //   onSubmitted: (String value) {
+              //     setState(() {
+              //       value = assigned;
+              //     });
+              //   },
+              // ),
             ],
           ),
         ),
