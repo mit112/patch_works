@@ -14,12 +14,11 @@ CollectionReference users = FirebaseFirestore.instance.collection('users');
 var data = users.doc().get();
 
 String checkIfAdmin(DocumentSnapshot doc) {
-
   return doc.data()['userType'];
 }
 
 // ignore: missing_return
-Future<bool> signInWithGoogle(BuildContext context) async {
+Future<Widget> signInWithGoogle(BuildContext context) async {
   try {
     final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
     if (googleSignInAccount != null) {
@@ -48,14 +47,13 @@ Future<bool> signInWithGoogle(BuildContext context) async {
                 // doc.reference.update(userData),
                 userType = checkIfAdmin(doc),
 
-
                 if (userType == 'admin')
                   {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return AdminHomepage();
+                          return Homepage();
                         },
                       ),
                     ),

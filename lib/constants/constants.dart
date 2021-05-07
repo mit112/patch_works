@@ -4,6 +4,7 @@ const kDarkBlue = Color(0xFF11A0D9);
 const kOrange = Color(0xFFFF8726);
 const kYellow = Color(0xFFFFCA3E);
 const kLightBlue = Color(0xFF42BBFF);
+const kGreyBlue = Colors.blueGrey;
 const kWhite = Color(0xFAFFFFFF);
 const kFont = 'Roboto';
 
@@ -19,7 +20,7 @@ class RoundedButton extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 16.0),
       child: Material(
         elevation: 5.0,
-        color: kDarkBlue,
+        color: kGreyBlue,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
           onPressed: onPressed,
@@ -49,14 +50,14 @@ const kTextFieldDecoration = InputDecoration(
   ),
   enabledBorder: OutlineInputBorder(
     borderSide: BorderSide(
-      color: kDarkBlue,
+      color: kGreyBlue,
       width: 1.0,
     ),
     borderRadius: BorderRadius.all(Radius.circular(25.0)),
   ),
   focusedBorder: OutlineInputBorder(
     borderSide: BorderSide(
-      color: kLightBlue,
+      color: kGreyBlue,
       width: 2.0,
     ),
     borderRadius: BorderRadius.all(Radius.circular(25.0)),
@@ -69,13 +70,19 @@ const kFieldStyle = TextStyle(
   //fontWeight: FontWeight.w600,
   fontSize: 20.0,
 );
-
 const kMyStyle = TextStyle(
   fontFamily: kFont,
   color: Colors.white,
   //fontWeight: FontWeight.w600,
   fontSize: 25.0,
 );
+
+// const kMyStyle = TextStyle(
+//   fontFamily: kFont,
+//   color: Colors.white,
+//   //fontWeight: FontWeight.w600,
+//   fontSize: 25.0,
+// );
 
 class RoundedButtonlogin extends StatelessWidget {
   RoundedButtonlogin({this.colour, this.title, @required this.onPressed});
@@ -92,7 +99,7 @@ class RoundedButtonlogin extends StatelessWidget {
       ),
       child: Material(
         elevation: 5.0,
-        color: kDarkBlue,
+        color: kGreyBlue,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
           onPressed: onPressed,

@@ -59,15 +59,16 @@ class AuthenticationWrapper extends StatefulWidget {
 }
 
 class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
-
   Future<String> checkIfAdmin() async {
     final firebaseUser = context.watch<User>();
     if (firebaseUser != null) {
-      CollectionReference users = FirebaseFirestore.instance.collection(
-          'users');
+      CollectionReference users =
+          FirebaseFirestore.instance.collection('users');
       String userType;
-      users.doc(firebaseUser.uid).get().then((doc) =>
-      userType = doc.data()['userType']);
+      users
+          .doc(firebaseUser.uid)
+          .get()
+          .then((doc) => userType = doc.data()['userType']);
       print('-' * 80);
       print(userType);
       print('-' * 80);
@@ -91,12 +92,11 @@ class _AuthenticationWrapperState extends State<AuthenticationWrapper> {
 
   @override
   Widget build(BuildContext context) {
-
     if (_userType != null) {
       print('-' * 80);
       print(_userType);
       print('-' * 80);
-      if(_userType == 'admin') {
+      if (_userType == 'admin') {
         return AdminHomepage();
       } else {
         return Homepage();

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:patch_works/screens/sign_in.dart';
 import 'camera_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'dart:async';
+
 import '../../constants/constants.dart';
 import 'package:patch_works/services/auth.dart';
 import 'view_complain.dart';
@@ -12,12 +15,25 @@ class Homepage extends StatefulWidget {
 }
 
 class _HomepageState extends State<Homepage> {
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhite,
+      backgroundColor: Color(0XFF1E1D21),
       appBar: AppBar(
-        backgroundColor: kDarkBlue,
+        backgroundColor: Colors.black,
         centerTitle: true,
         title: Text('Patch Works'),
       ),
@@ -35,7 +51,7 @@ class _HomepageState extends State<Homepage> {
                     fit: BoxFit.fitWidth,
                     child: RoundedButton(
                       title: 'Register New Complaint',
-                      colour: kDarkBlue,
+                      colour: kGreyBlue,
                       onPressed: () async {
                         // Navigator.push(
                         //   context,
@@ -86,18 +102,17 @@ class _HomepageState extends State<Homepage> {
                     fit: BoxFit.fitWidth,
                     child: RoundedButton(
                       title: 'Log Out',
-                      colour: kDarkBlue,
+                      colour: Colors.black54,
                       onPressed: () async {
                         // context.read<AuthService>().signOut();
 
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
                           return Authenticate();
                         }));
                         bool value = await logout();
                         print(value);
-                        if(value) {
-
-                        }
+                        if (value) {}
                       },
                     ),
                   ),

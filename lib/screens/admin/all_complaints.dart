@@ -89,22 +89,20 @@ class _AllComplaintsState extends State<AllComplaints> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (_, index) {
                   return ListTile(
-                    title: Text(
-                      snapshot.data[index].data()["landmark"],
-                      style: kFieldStyle,
-                    ),
-                    onTap: () async {
-                      print(snapshot.data[index].data()['imagePath']);
-                      String imagePath = await downloadFileExample(
-                          snapshot.data[index].data()['imagePath']);
-                      if(imagePath != null) {
-                        navigateToDetail(
-                            snapshot.data[index], imagePath);
-                      } else {
-                        print('Error');
-                      }
-                    }
-                  );
+                      title: Text(
+                        snapshot.data[index].data()["landmark"],
+                        style: kFieldStyle,
+                      ),
+                      onTap: () async {
+                        print(snapshot.data[index].data()['imagePath']);
+                        String imagePath = await downloadFileExample(
+                            snapshot.data[index].data()['imagePath']);
+                        if (imagePath != null) {
+                          navigateToDetail(snapshot.data[index], imagePath);
+                        } else {
+                          print('Error');
+                        }
+                      });
                 });
           }
         },
@@ -114,7 +112,6 @@ class _AllComplaintsState extends State<AllComplaints> {
 }
 
 class DetailPage extends StatefulWidget {
-
   final DocumentSnapshot post;
   final String imagePath;
 
@@ -125,6 +122,8 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  String assigned;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -233,10 +232,20 @@ class _DetailPageState extends State<DetailPage> {
                       SizedBox(
                         height: 20.0,
                       ),
-
                     ],
                   ),
                 ),
+              ),
+              Text(
+                'Assigned to:- ',
+                style: kFieldStyle,
+              ),
+              TextField(
+                onSubmitted: (String value) {
+                  setState(() {
+                    value = assigned;
+                  });
+                },
               ),
             ],
           ),

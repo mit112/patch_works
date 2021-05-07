@@ -1,8 +1,12 @@
+import 'dart:async';
 import 'dart:io';
 import 'dart:math';
-
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter/material.dart';
+import 'map_page.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:patch_works/screens/user/homepage.dart';
+import 'package:patch_works/screens/user/map_page.dart';
 import 'package:patch_works/services/location.dart';
 
 import '../../services/google_auth.dart';
@@ -22,6 +26,7 @@ class NewComplaint extends StatefulWidget {
 }
 
 class _NewComplaintState extends State<NewComplaint> {
+  Completer<GoogleMapController> _controller = Completer();
   // DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
 
@@ -52,12 +57,10 @@ class _NewComplaintState extends State<NewComplaint> {
   //   return await collectionReference.getDocuments();
   // }
 
-
   Random _rnd = Random();
 
   String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
       length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
-
 
   Future<String> uploadFile(String filePath) async {
     File file = File(filePath);
@@ -65,12 +68,15 @@ class _NewComplaintState extends State<NewComplaint> {
     try {
       String imageName = getRandomString(15);
       print(file);
-      await firebase_storage.FirebaseStorage.instance.ref('images/$imageName').putFile(file);
+      await firebase_storage.FirebaseStorage.instance
+          .ref('images/$imageName')
+          .putFile(file);
       return imageName;
-    }  catch (e) {
+    } catch (e) {
       print(e);
     }
   }
+
   @override
   void initState() {
     super.initState();
@@ -95,7 +101,41 @@ class _NewComplaintState extends State<NewComplaint> {
             Container(
               height: 150,
               width: 150,
-              child: Image.file(File(widget.imagePath)),
+              child: Image.file(
+                File(
+                  widget.imagePath,
+                ),
+              ),
+            ),
+            Container(
+              // margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+              width: MediaQuery.of(context).size.width,
+              height: 300,
+              child: GoogleMap(
+                // onMapCreated: (GoogleMapController controller) {
+                //   _controller.complete(controller);
+                // },
+                mapType: MapType.normal,
+                scrollGesturesEnabled: true,
+                myLocationEnabled: true,
+                initialCameraPosition: CameraPosition(
+                  target: LatLng(19.1726, 72.9425),
+                  zoom: 10.0,
+                ),
+              ),
+            ),
+            RoundedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MapPage();
+                    },
+                  ),
+                );
+              },
+              title: 'Map',
             ),
             SizedBox(
               height: 20.0,
@@ -307,13 +347,14 @@ class _NewComplaintState extends State<NewComplaint> {
                   print(value.id);
                 });
 
-
-
-                Navigator.push(context, MaterialPageRoute(
-                  builder: (context) {
-                    return Homepage();
-                  },
-                ),);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Homepage();
+                    },
+                  ),
+                );
               },
               title: 'Submit',
             ),
