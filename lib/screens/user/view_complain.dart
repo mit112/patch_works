@@ -108,28 +108,30 @@ class _ViewComplainState extends State<ViewComplain> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               ListTile(
-                                title: Text(
-                                  snapshot.data[index].data()["landmark"],
-                                  style: TextStyle(
-                                    fontFamily: kFont,
-                                    fontSize: 20.0,
-                                    letterSpacing: 1.5,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
+                                  title: Text(
+                                    snapshot.data[index].data()["landmark"],
+                                    style: TextStyle(
+                                      fontFamily: kFont,
+                                      fontSize: 20.0,
+                                      letterSpacing: 1.5,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                onTap: () async {
-                                  print(snapshot.data[index].data()['imagePath']);
-                                  String imagePath = await downloadFileExample(
-                                      snapshot.data[index].data()['imagePath']);
-                                  if(imagePath != null) {
-                                    navigateToDetail(
-                                        snapshot.data[index], imagePath);
-                                  } else {
-                                    print('Error');
-                                  }
-                                }
-                              ),
+                                  onTap: () async {
+                                    print(snapshot.data[index]
+                                        .data()['imagePath']);
+                                    String imagePath =
+                                        await downloadFileExample(snapshot
+                                            .data[index]
+                                            .data()['imagePath']);
+                                    if (imagePath != null) {
+                                      navigateToDetail(
+                                          snapshot.data[index], imagePath);
+                                    } else {
+                                      print('Error');
+                                    }
+                                  }),
                             ],
                           ),
                         ),
@@ -265,17 +267,21 @@ class _DetailPageState extends State<DetailPage> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            'Comments:- ',
-                            style: kMyStyle,
-                          ),
-                          Text(
-                            widget.post.data()['comments'],
-                            style: kMyStyle,
-                          ),
-                        ],
+                      FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Comments:- ',
+                              style: kMyStyle,
+                            ),
+                            Text(
+                              widget.post.data()['comments'],
+                              style: kMyStyle,
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: 20.0,
