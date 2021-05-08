@@ -217,17 +217,21 @@ class _DetailPageState extends State<DetailPage> {
                       SizedBox(
                         height: 20.0,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            'Comments:- ',
-                            style: kMyStyle,
-                          ),
-                          Text(
-                            widget.post.data()['comments'],
-                            style: kMyStyle,
-                          ),
-                        ],
+                      FittedBox(
+                        fit: BoxFit.fitHeight,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Comments:- ',
+                              style: kMyStyle,
+                            ),
+                            Text(
+                              widget.post.data()['comments'],
+                              style: kMyStyle,
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: 20.0,
