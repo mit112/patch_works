@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'dart:math';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter/material.dart';
@@ -46,12 +48,14 @@ class _NewComplaintState extends State<NewComplaint> {
   String uid = auth.currentUser.uid.toString();
   CollectionReference admin = FirebaseFirestore.instance.collection('Admin');
   CollectionReference get collectionReference =>
-      users.doc(uid).collection('complaint');
+      users.doc(uid).collection('ServiceRequest');
+
   String name;
   String landmark;
   var number;
   String comments;
   Location location = Location();
+
   // getData() async {
   //   // ignore: deprecated_member_use
   //   return await collectionReference.getDocuments();
@@ -88,7 +92,7 @@ class _NewComplaintState extends State<NewComplaint> {
     return Scaffold(
       backgroundColor: kWhite,
       appBar: AppBar(
-        title: Text('New Complaint'),
+        title: Text('New Service Request'),
         centerTitle: true,
         backgroundColor: kDarkBlue,
       ),
@@ -112,6 +116,11 @@ class _NewComplaintState extends State<NewComplaint> {
               width: MediaQuery.of(context).size.width,
               height: 300,
               child: GoogleMap(
+                gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
+                  new Factory<OneSequenceGestureRecognizer>(
+                    () => new EagerGestureRecognizer(),
+                  ),
+                ].toSet(),
                 // onMapCreated: (GoogleMapController controller) {
                 //   _controller.complete(controller);
                 // },
@@ -119,7 +128,8 @@ class _NewComplaintState extends State<NewComplaint> {
                 scrollGesturesEnabled: true,
                 myLocationEnabled: true,
                 initialCameraPosition: CameraPosition(
-                  target: LatLng(19.1726, 72.9425),
+                  target: LatLng(location.latitude ?? 19.1669034,
+                      location.longitude ?? 72.9441963),
                   zoom: 10.0,
                 ),
               ),

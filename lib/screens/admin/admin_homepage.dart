@@ -72,7 +72,7 @@ class _AdminHomepageState extends State<AdminHomepage> {
                   FittedBox(
                     fit: BoxFit.fitWidth,
                     child: RoundedButton(
-                      title: 'Assigned Complaints',
+                      title: 'Assigned Service Request',
                       colour: Color(0XFFB577FF),
                       onPressed: () {
                         Navigator.push(
@@ -98,7 +98,7 @@ class _AdminHomepageState extends State<AdminHomepage> {
                         // context.read<AuthService>().signOut();
                         bool value = await logout();
                         print(value);
-                        if(value) {
+                        if (value) {
                           Navigator.pop(context);
                         }
                       },

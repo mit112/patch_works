@@ -27,7 +27,7 @@ class _ViewComplainState extends State<ViewComplain> {
   String uid = auth.currentUser.uid.toString();
 
   CollectionReference get collectionReference =>
-      users.doc(uid).collection('complaint');
+      users.doc(uid).collection('ServiceRequest');
 
   Future getPosts() async {
     QuerySnapshot qn = await collectionReference.get();
@@ -76,7 +76,7 @@ class _ViewComplainState extends State<ViewComplain> {
     return Scaffold(
       backgroundColor: kWhite,
       appBar: AppBar(
-        title: Text('Your Complaints'),
+        title: Text('Your Service Requests'),
         centerTitle: true,
         backgroundColor: Colors.black,
       ),
@@ -202,7 +202,7 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                       Center(
                         child: Text(
-                          'Complaint',
+                          'Service Request',
                           style: TextStyle(
                             fontFamily: kFont,
                             fontSize: 30.0,

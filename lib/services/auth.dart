@@ -43,14 +43,14 @@ class DatabaseService {
 
   Stream<List<Users>> get users {
     return FirebaseFirestore.instance
-        .collection('complaint')
+        .collection('ServiceRequest')
         .snapshots()
         .map(_userListFromSnapshot);
   }
 
   Stream<Users> userStream() {
     return FirebaseFirestore.instance
-        .collection('complaint')
+        .collection('ServiceRequest')
         .doc(FirebaseAuth.instance.currentUser.uid)
         .snapshots()
         .map((snap) => Users.fromFirestore(snap));
@@ -58,7 +58,7 @@ class DatabaseService {
 
   Future<DocumentSnapshot> getUserByID(String userID) async {
     DocumentSnapshot user = await FirebaseFirestore.instance
-        .collection('complaint')
+        .collection('ServiceRequest')
         .doc(userID)
         .get();
     return user;
@@ -71,7 +71,7 @@ saveData(
   String landmark,
 ) async {
   FirebaseFirestore.instance
-      .collection('complaint')
+      .collection('ServiceRequest')
       .doc(FirebaseAuth.instance.currentUser.uid)
       .set({
     'name': name,

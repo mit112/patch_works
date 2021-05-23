@@ -72,7 +72,7 @@ class _AllComplaintsState extends State<AllComplaints> {
     return Scaffold(
       backgroundColor: kWhite,
       appBar: AppBar(
-        title: Text('All Complaints'),
+        title: Text('All Service Request'),
         centerTitle: true,
         backgroundColor: kDarkBlue,
       ),
@@ -88,21 +88,52 @@ class _AllComplaintsState extends State<AllComplaints> {
                 // ignore: missing_return
                 itemCount: snapshot.data.length,
                 itemBuilder: (_, index) {
-                  return ListTile(
-                      title: Text(
-                        snapshot.data[index].data()["landmark"],
-                        style: kFieldStyle,
+                  return Column(
+                    // crossAxisAlignment: CrossAxisAlignment.center,
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Card(
+                        color: kDarkBlue,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        child: Container(
+                          margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                          width: double.infinity,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              ListTile(
+                                  title: Text(
+                                    snapshot.data[index].data()["landmark"],
+                                    style: TextStyle(
+                                      fontFamily: kFont,
+                                      fontSize: 20.0,
+                                      letterSpacing: 1.5,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  onTap: () async {
+                                    print(snapshot.data[index]
+                                        .data()['imagePath']);
+                                    String imagePath =
+                                        await downloadFileExample(snapshot
+                                            .data[index]
+                                            .data()['imagePath']);
+                                    if (imagePath != null) {
+                                      navigateToDetail(
+                                          snapshot.data[index], imagePath);
+                                    } else {
+                                      print('Error');
+                                    }
+                                  }),
+                            ],
+                          ),
+                        ),
                       ),
-                      onTap: () async {
-                        print(snapshot.data[index].data()['imagePath']);
-                        String imagePath = await downloadFileExample(
-                            snapshot.data[index].data()['imagePath']);
-                        if (imagePath != null) {
-                          navigateToDetail(snapshot.data[index], imagePath);
-                        } else {
-                          print('Error');
-                        }
-                      });
+                    ],
+                  );
                 });
           }
         },
@@ -152,7 +183,7 @@ class _DetailPageState extends State<DetailPage> {
                     children: [
                       Center(
                         child: Text(
-                          'Complaint',
+                          'Service Request',
                           style: TextStyle(
                             fontFamily: kFont,
                             fontSize: 30.0,
@@ -258,3 +289,19 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 }
+
+// ListTile(
+// title: Text(
+// snapshot.data[index].data()["landmark"],
+// style: kFieldStyle,
+// ),
+// onTap: () async {
+// print(snapshot.data[index].data()['imagePath']);
+// String imagePath = await downloadFileExample(
+// snapshot.data[index].data()['imagePath']);
+// if (imagePath != null) {
+// navigateToDetail(snapshot.data[index], imagePath);
+// } else {
+// print('Error');
+// }
+// });

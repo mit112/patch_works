@@ -50,7 +50,7 @@ class _HomepageState extends State<Homepage> {
                   FittedBox(
                     fit: BoxFit.fitWidth,
                     child: RoundedButton(
-                      title: 'Register New Complaint',
+                      title: 'Register New Service Request',
                       colour: kGreyBlue,
                       onPressed: () async {
                         // Navigator.push(
@@ -84,7 +84,7 @@ class _HomepageState extends State<Homepage> {
                   FittedBox(
                     fit: BoxFit.fitWidth,
                     child: RoundedButton(
-                      title: 'View Registered Complaint',
+                      title: 'View Registered Service Request',
                       colour: kDarkBlue,
                       onPressed: () {
                         Navigator.push(
