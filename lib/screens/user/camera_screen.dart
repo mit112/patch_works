@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:patch_works/constants/constants.dart';
 import 'new_complaint.dart';
 import 'display_picture_screen.dart';
+import '../../services/location.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CameraScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -23,6 +25,9 @@ class _CameraScreenState extends State<CameraScreen> {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
 
+  Location location = Location();
+  Set<Marker> _marker = {};
+
   @override
   void initState() {
     super.initState();
@@ -33,10 +38,20 @@ class _CameraScreenState extends State<CameraScreen> {
       widget.camera,
       // Define the resolution to use.
       ResolutionPreset.medium,
+
     );
+    location.getCurrentLocation();
 
     // Next, initialize the controller. This returns a Future.
     _initializeControllerFuture = _controller.initialize();
+  }
+
+  void _onMapCreated() {
+    if (location.latitude != null && location.longitude != null) {
+      setState(() {
+        _marker.add(Marker(markerId:  MarkerId('1'), position: LatLng(location.latitude, location.longitude),));
+      });
+    }
   }
 
   @override

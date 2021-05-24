@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patch_works/screens/google_map.dart';
 import 'package:patch_works/screens/sign_in.dart';
 import 'camera_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -72,9 +73,7 @@ class _HomepageState extends State<Homepage> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return CameraScreen(
-                                camera: firstCamera,
-                              );
+                              return CameraScreen(camera: firstCamera);
                             },
                           ),
                         );

@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'dart:math';
-import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter/material.dart';
 import 'map_page.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -16,12 +15,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../../constants/constants.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
+
 const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
 
 class NewComplaint extends StatefulWidget {
   final String imagePath;
 
   const NewComplaint({Key key, this.imagePath}) : super(key: key);
+
 
   @override
   _NewComplaintState createState() => _NewComplaintState();
@@ -31,6 +32,10 @@ class _NewComplaintState extends State<NewComplaint> {
   Completer<GoogleMapController> _controller = Completer();
   // DatabaseService db = DatabaseService();
   DocumentSnapshot doc;
+  var _markers = {};
+
+
+
 
   // final TextEditingController name = new TextEditingController();
   // final TextEditingController landmark = new TextEditingController();
@@ -55,7 +60,6 @@ class _NewComplaintState extends State<NewComplaint> {
   var number;
   String comments;
   Location location = Location();
-
   // getData() async {
   //   // ignore: deprecated_member_use
   //   return await collectionReference.getDocuments();
@@ -85,6 +89,16 @@ class _NewComplaintState extends State<NewComplaint> {
   void initState() {
     super.initState();
     location.getCurrentLocation();
+  }
+
+  Set<Marker> _marker = {};
+
+  void _onMapCreated(GoogleMapController controller) {
+    if (location.latitude != null && location.longitude != null) {
+      setState(() {
+        _marker.add(Marker(markerId:  MarkerId('1'), position: LatLng(location.latitude, location.longitude),));
+      });
+    }
   }
 
   @override
@@ -124,32 +138,37 @@ class _NewComplaintState extends State<NewComplaint> {
                 // onMapCreated: (GoogleMapController controller) {
                 //   _controller.complete(controller);
                 // },
+                onMapCreated: _onMapCreated,
                 mapType: MapType.normal,
                 scrollGesturesEnabled: true,
                 myLocationEnabled: true,
                 initialCameraPosition: CameraPosition(
                   target: LatLng(location.latitude ?? 19.1669034,
                       location.longitude ?? 72.9441963),
-                  zoom: 10.0,
+                  zoom: 15.0,
                 ),
+                markers: _marker,
               ),
             ),
-            RoundedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return MapPage();
-                    },
-                  ),
-                );
-              },
-              title: 'Map',
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
+            // RoundedButton(
+            //   onPressed: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute(
+            //         builder: (context) {
+            //           return MapPage(
+            //             latitude: location.latitude,
+            //             longitude: location.longitude,
+            //           );
+            //         },
+            //       ),
+            //     );
+            //   },
+            //   title: 'Map',
+            // ),
+            // SizedBox(
+            //   height: 20.0,
+            // ),
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: Row(

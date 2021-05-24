@@ -1,4 +1,8 @@
 import 'dart:io';
+import 'dart:async';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter/material.dart';
 import '../../constants/constants.dart';
@@ -168,121 +172,145 @@ class _DetailPageState extends State<DetailPage> {
       body: Container(
         child: Padding(
           padding: EdgeInsets.only(left: 10.0),
-          child: Column(
-            children: [
-              Card(
-                color: kDarkBlue,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                child: Container(
-                  margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Text(
-                          'Service Request',
-                          style: TextStyle(
-                            fontFamily: kFont,
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Card(
+                  color: kDarkBlue,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Container(
+                    margin: EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Text(
+                            'Service Request',
+                            style: TextStyle(
+                              fontFamily: kFont,
+                              fontSize: 30.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Container(
-                        height: 150,
-                        width: double.infinity,
-                        child: Image.file(File(widget.imagePath)),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Landmark:- ',
-                            style: kMyStyle,
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Container(
+                          // margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
+                          width: MediaQuery.of(context).size.width,
+                          height: 300,
+                          child: GoogleMap(
+                            gestureRecognizers: <Factory<OneSequenceGestureRecognizer>>[
+                              new Factory<OneSequenceGestureRecognizer>(
+                                    () => new EagerGestureRecognizer(),
+                              ),
+                            ].toSet(),
+                            // onMapCreated: (GoogleMapController controller) {
+                            //   _controller.complete(controller);
+                            initialCameraPosition: CameraPosition(
+                              target: LatLng(widget.post.data()['latitude'] ?? 19.1669034,
+                                  widget.post.data()['longitude'] ?? 72.9441963),
+                              zoom: 15.0,
+                            ),
                           ),
-                          Text(
-                            widget.post.data()['landmark'],
-                            style: kMyStyle,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Name:- ',
-                            style: kMyStyle,
-                          ),
-                          Text(
-                            widget.post.data()['name'],
-                            style: kMyStyle,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            'Phone:- ',
-                            style: kMyStyle,
-                          ),
-                          Text(
-                            widget.post.data()['Phone'],
-                            style: kMyStyle,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                      FittedBox(
-                        fit: BoxFit.fitHeight,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                          height: 150,
+                          width: double.infinity,
+                          child: Image.file(File(widget.imagePath)),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
                           children: [
                             Text(
-                              'Comments:- ',
+                              'Landmark:- ',
                               style: kMyStyle,
                             ),
                             Text(
-                              widget.post.data()['comments'],
+                              widget.post.data()['landmark'],
                               style: kMyStyle,
                             ),
                           ],
                         ),
-                      ),
-                      SizedBox(
-                        height: 20.0,
-                      ),
-                    ],
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Name:- ',
+                              style: kMyStyle,
+                            ),
+                            Text(
+                              widget.post.data()['name'],
+                              style: kMyStyle,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Row(
+                          children: [
+                            Text(
+                              'Phone:- ',
+                              style: kMyStyle,
+                            ),
+                            Text(
+                              widget.post.data()['Phone'],
+                              style: kMyStyle,
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        FittedBox(
+                          fit: BoxFit.fitHeight,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Comments:- ',
+                                style: kMyStyle,
+                              ),
+                              Text(
+                                widget.post.data()['comments'],
+                                style: kMyStyle,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              // Text(
-              //   'Assigned to:- ',
-              //   style: kFieldStyle,
-              // ),
-              // TextField(
-              //   onSubmitted: (String value) {
-              //     setState(() {
-              //       value = assigned;
-              //     });
-              //   },
-              // ),
-            ],
+                // Text(
+                //   'Assigned to:- ',
+                //   style: kFieldStyle,
+                // ),
+                // TextField(
+                //   onSubmitted: (String value) {
+                //     setState(() {
+                //       value = assigned;
+                //     });
+                //   },
+                // ),
+              ],
+            ),
           ),
         ),
       ),
